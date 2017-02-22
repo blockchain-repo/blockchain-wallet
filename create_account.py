@@ -1,3 +1,7 @@
+"""The role of this module is to create an account and write to the '.account' file
+
+"""
+
 from bigchaindb_driver.crypto import generate_keypair
 import rapidjson
 

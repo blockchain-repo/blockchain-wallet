@@ -4,6 +4,7 @@
 from collections import namedtuple
 from cryptoconditions import crypto
 import rapidjson
+import os
 
 CryptoKeypair = namedtuple('CryptoKeypair', ('signing_key', 'verifying_key'))
 
@@ -21,6 +22,7 @@ def generate_keypair():
         *(k.decode() for k in crypto.ed25519_generate_key_pair()))
 
 def create_account(username):
+
     keypair = generate_keypair()
 
     account = {
@@ -37,6 +39,11 @@ def create_account(username):
     return(account)
 
 if __name__=='__main__':
+    isAccoutExist = os.path.exists('.account')
+    if isAccoutExist:
+        print("this client already exists an account.")
+        exit()
+
     username = input ('Pick a username:\n')
     print(create_account(username))
     

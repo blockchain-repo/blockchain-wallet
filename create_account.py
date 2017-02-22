@@ -1,9 +1,24 @@
 """The role of this module is to create an account and write to the '.account' file
 
 """
-
-from bigchaindb_driver.crypto import generate_keypair
+from collections import namedtuple
+from cryptoconditions import crypto
 import rapidjson
+
+CryptoKeypair = namedtuple('CryptoKeypair', ('signing_key', 'verifying_key'))
+
+def generate_keypair():
+    """Generates a cryptographic key pair.
+
+    Returns:
+        :class:`~bigchaindb_driver.crypto.CryptoKeypair`: A
+        :obj:`collections.namedtuple` with named fields
+        :attr:`~bigchaindb_driver.crypto.CryptoKeypair.signing_key` and
+        :attr:`~bigchaindb_driver.crypto.CryptoKeypair.verifying_key`.
+
+    """
+    return CryptoKeypair(
+        *(k.decode() for k in crypto.ed25519_generate_key_pair()))
 
 def create_account(username):
     keypair = generate_keypair()

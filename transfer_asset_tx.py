@@ -1,3 +1,6 @@
+"""A simple way to generate a `TRANSFER` transaction.
+
+"""
 import json
 import requests
 from .UTXO import UTXO

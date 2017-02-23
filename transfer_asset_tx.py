@@ -3,8 +3,8 @@
 """
 import json
 import requests
-from .UTXO import UTXO
-from bigchaindb.common.transaction import Transaction, Asset
+from UTXO import UTXO
+from bigchaindb.common.transaction import Transaction, Asset, Fulfillment, Condition
 
 def transfer_asset_tx(verifying_key,signing_key,after,amount):
     #print(verifying_key,signing_key,amount)
@@ -16,30 +16,37 @@ def transfer_asset_tx(verifying_key,signing_key,after,amount):
     #TODO:inputS
     inputs = []
     balance = 0
-    UTXO = UTXO(verifying_key)
-    for i in UTXO:
+    utxo = UTXO(verifying_key)
+    utxo = json.loads(utxo)
+    for i in utxo:
+        print(i)
         f = Fulfillment.from_dict({
-            'fulfillment': condition['condition']['details'],
+            'fulfillment':{"bitmask": 32 ,
+                                "public_key":  "7Kc4uLWndreZYmrYi5VsE2mxJC5wVxvHioy8xUws4rLz" ,
+                                "signature":"" ,
+                                "type":  "fulfillment" ,
+                                "type_id": 4
+                          } ,
             'input': {
-                'cid': f['cid'],
-                'txid': f['txid'],
+                'cid': i['cid'],
+                'txid': i['txid'],
              },
-             'owners_before': verifying_key,
+             'owners_before': [verifying_key],
         })
-        inputs.appnd(f)
-        balance += f['amount']
+        inputs.append(f)
+        balance += i['amount']
 
     # create trnsaction  TODO : amount
     if balance < amount:
         exit('balance<amount')
-    elif balance = amount:
-        tx = Transaction.transfer(inputs, [([after],amount)], = asset)
-    else
-        tx = Transaction.transfer(inputs, [([after],amount),([verifying_key],balance-amount)], = asset)
+    elif balance == amount:
+        tx = Transaction.transfer(inputs, [([after],amount)], asset)
+    else:
+        tx = Transaction.transfer(inputs, [([after],amount),([verifying_key],balance-amount)],asset)
     # sign with private key
     tx = tx.sign([signing_key])
     tx_id = tx.to_dict()['id']
-
+    print(tx.to_dict())
 
     url='http://127.0.0.1:9984/uniledger/v1/transaction/createOrTransferTx'
     headers = {'content-type': 'application/json'}
@@ -59,10 +66,6 @@ if __name__=='__main__':
         exit('need .account')
     #TODO : validate
     after = input ('Please input an after:\n')
-    try:
-        after = int(amount)
-    except ValueError:
-        exit('`amount` must be an int')
     amount = input ('Please input an integer:\n')
     try:
         amount = int(amount)

@@ -5,7 +5,7 @@ import json
 import requests
 
 def UTXO(verifying_key):
-    url='http://127.0.0.1:9984/uniledger/v1/condition/getUnspentTxs?public_key={}'.format(verifying_key)
+    url='http://127.0.0.1:9984/uniledger/v1/condition/getUnspentTxs?unspent=true&public_key={}'.format(verifying_key)
     r=requests.get(url)
     return r.text
 

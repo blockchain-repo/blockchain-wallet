@@ -17,7 +17,7 @@ def create_asset_tx(verifying_key,signing_key,amount):
 
     url='http://127.0.0.1:9984/uniledger/v1/transaction/createOrTransferTx'
     headers = {'content-type': 'application/json'}
-    value = json.dumps(tx)
+    value = json.dumps(tx.to_dict())
     r = requests.post(url, data=value, headers=headers)
     return(r.text)
 

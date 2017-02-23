@@ -1,3 +1,6 @@
+"""A simple way to generate a `CREATE` transaction.
+
+"""
 import json
 import requests
 from bigchaindb.common.transaction import Transaction, Asset

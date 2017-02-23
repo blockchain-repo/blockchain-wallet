@@ -14,6 +14,7 @@ A simple way to generate a `TRANSFER` transaction.
 
 ####[`tx_list.py`](./tx_list.py)
 
+The role of this module is to get transaction list of the account
 
 ####[`UTXO.py`](./UTXO.py)
 

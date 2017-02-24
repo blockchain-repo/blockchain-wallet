@@ -13,20 +13,13 @@ def transfer_asset_tx(verifying_key,signing_key,after,amount):
     # Metadata Definition
     metadata = {'planet': 'earth'}
 
-    #TODO:inputS
     inputs = []
     balance = 0
     utxo = UTXO(verifying_key)
     utxo = json.loads(utxo)
     for i in utxo:
-        print(i)
         f = Fulfillment.from_dict({
-            'fulfillment':{"bitmask": 32 ,
-                                "public_key":  "7Kc4uLWndreZYmrYi5VsE2mxJC5wVxvHioy8xUws4rLz" ,
-                                "signature":"" ,
-                                "type":  "fulfillment" ,
-                                "type_id": 4
-                          } ,
+            'fulfillment':i['details'] ,
             'input': {
                 'cid': i['cid'],
                 'txid': i['txid'],
@@ -36,7 +29,7 @@ def transfer_asset_tx(verifying_key,signing_key,after,amount):
         inputs.append(f)
         balance += i['amount']
 
-    # create trnsaction  TODO : amount
+    # create trnsaction
     if balance < amount:
         exit('balance<amount')
     elif balance == amount:

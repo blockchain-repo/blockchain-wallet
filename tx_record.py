@@ -4,9 +4,10 @@
 import json
 import requests
 
-def tx_list(verifying_key):
+def tx_record(verifying_key):
     # TODO:URL
-    url='http://127.0.0.1:9984/uniledger/v1/condition/getUnspentTxs?public_key={}'.format(verifying_key)
+    #url='http://127.0.0.1:9984/uniledger/v1/transaction/getTxRecord?public_key={}'.format('Gvexu49oskc6ptYwzqP9q8sL9jLxjNZNMBWgVVhUtPmD')
+    url='http://127.0.0.1:9984/uniledger/v1/transaction/getTxRecord?public_key={}'.format(verifying_key)
     r=requests.get(url)
     return r.text
 
@@ -18,4 +19,4 @@ if __name__=='__main__':
         verifying_key = account['verifying_key']
     except ValueError:
         exit('need .account')
-    print(tx_list(verifying_key))
+    print(tx_record(verifying_key))

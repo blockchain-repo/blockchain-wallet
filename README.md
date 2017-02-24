@@ -6,7 +6,7 @@ The role of this module is to create an account and write to the '.account' file
 
 ```
 ~/unichain-account$ python3 create_account.py
-Pick your username:
+Please input an username:
 >>>Mike
 {
     "username": "Mike",
@@ -22,7 +22,7 @@ A simple way to generate a `CREATE` transaction.
 
 ```
 :~/unichain-account$ python3 create_asset_tx.py
-Please input an integer:
+Please input the amount(int):
 >>>10000
 {
     "id": "e02afde589b67bc5ee8bc1eb455609ba2f00e990227fedf4de22ff33ac641867",
@@ -84,9 +84,9 @@ A simple way to generate a `TRANSFER` transaction.
 
 ```
 ~/unichain-account$ python3 transfer_asset_tx.py
-Please input an after:
+Please input 'owners_after':
 >>>5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X
-Please input an integer:
+Please input the amount(int):
 >>>2000
 {
     "id": "a784445834b37caf74af8ad3a88f7b64c1e0b80c0235b08a5673957f02842c00",

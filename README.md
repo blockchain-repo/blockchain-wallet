@@ -7,11 +7,11 @@ The role of this module is to create an account and write to the '.account' file
 ```
 ~/unichain-account$ python3 create_account.py
 Pick a username:
-mike
+>>>Mike
 {
-    'username': 'mike',
-    'verifying_key': '5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X',
-    'signing_key': '8BzfpzwgBxJrCFZuvPVY48N3Lf8WCcXpDDJwrTNfxxwd'
+    "username": "Mike",
+    "verifying_key": "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1",
+    "signing_key": "HStrGbff99t69ipzqw9q6JzqjMSF9UaMGHwJ2qmCWMwo"
 }
 ```
 
@@ -21,60 +21,60 @@ mike
 A simple way to generate a `CREATE` transaction.
 
 ```
-~/unichain-account$ python3 create_asset_tx.py
+:~/unichain-account$ python3 create_asset_tx.py
 Please input an integer:
-100
+10000
 {
-    "version": 1,
-    "id": "092c913f16c658de429912a47ef1989dcfc51897ba76395c843cbdb01480cbcb",
+    "id": "e02afde589b67bc5ee8bc1eb455609ba2f00e990227fedf4de22ff33ac641867",
     "transaction": {
-        "fulfillments": [
-            {
-                "owners_before": [
-                    "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X"
-                ],
-                "fid": 0,
-                "fulfillment": "cf:4:PsiwZR_uYx613wh4xbPSpdZ_Xzdu1gZQEqgWAk9w11aE61aNwAXcQeXiGXh2iTJ8CqJYm0SebTCwJYYl93iAohwjd5d6S-7wc90A2QDGJcbEg6q8-A5pdsGIMzpr_AgL",
-                "input": null
-            }
-        ],
-        "conditions": [
-            {
-                "amount": 100,
-                "owners_after": [
-                    "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X"
-                ],
-                "cid": 0,
-                "condition": {
-                    "details": {
-                        "bitmask": 32,
-                        "signature": null,
-                        "type_id": 4,
-                        "public_key": "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X",
-                        "type": "fulfillment"
-                    },
-                    "uri": "cc:4:20:PsiwZR_uYx613wh4xbPSpdZ_Xzdu1gZQEqgWAk9w11Y:96"
-                }
-            }
-        ],
         "asset": {
             "divisible": true,
-            "refillable": false,
             "id": "1",
             "data": {
                 "money": "RMB"
             },
-            "updatable": false
+            "updatable": false,
+            "refillable": false
         },
+        "timestamp": "1487918052087",
+        "conditions": [
+            {
+                "cid": 0,
+                "condition": {
+                    "uri": "cc:4:20:XjXJ9clYCIKLHf8CdAfLfw5BYPzweeqXU1BbJCUD30I:96",
+                    "details": {
+                        "type_id": 4,
+                        "public_key": "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1",
+                        "type": "fulfillment",
+                        "signature": null,
+                        "bitmask": 32
+                    }
+                },
+                "owners_after": [
+                    "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1"
+                ],
+                "amount": 10000
+            }
+        ],
+        "operation": "CREATE",
         "metadata": {
-            "id": "af688338-f24a-4354-a16a-4beb9b96ab22",
+            "id": "99e26e5a-46db-43d2-936c-7e7d1b274013",
             "data": {
                 "planet": "earth"
             }
         },
-        "timestamp": "1487914832286",
-        "operation": "CREATE"
-    }
+        "fulfillments": [
+            {
+                "fid": 0,
+                "fulfillment": "cf:4:XjXJ9clYCIKLHf8CdAfLfw5BYPzweeqXU1BbJCUD30IYu1QGxAOT-upQL1lVgi--Dx3R4r_7uoiGgRyIpmWAfR3nR73N8-AqBR2PiEM71ESwlsz4B3sVeSKJsF4NAqcM",
+                "owners_before": [
+                    "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1"
+                ],
+                "input": null
+            }
+        ]
+    },
+    "version": 1
 }
 ```
 
@@ -85,69 +85,69 @@ A simple way to generate a `TRANSFER` transaction.
 ```
 ~/unichain-account$ python3 transfer_asset_tx.py
 Please input an after:
-CShGVt5vTN3g3S14QcnWoVcsEMMkvznWJ8nPfef7T78b
+>>>5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X
 Please input an integer:
-20
+>>>2000
 {
-    'version': 1,
-    'transaction': {
-        'asset': {
-            'id': '1'
-        },
-        'fulfillments': [
+    "id": "a784445834b37caf74af8ad3a88f7b64c1e0b80c0235b08a5673957f02842c00",
+    "version": 1,
+    "transaction": {
+        "fulfillments": [
             {
-                'owners_before': [
-                    '5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X'
-                ],
-                'fid': 0,
-                'fulfillment': 'cf: 4: PsiwZR_uYx613wh4xbPSpdZ_Xzdu1gZQEqgWAk9w11aqhxjgLIyEdP3ZWDNjLqXVIQiK7tWI2wJsCY5BxNiPMfpT-ohDIPaEWo-33gGKicacrktoae_L4sIwhIGTkh8A',
-                'input': {
-                    'cid': 0,
-                    'txid': '092c913f16c658de429912a47ef1989dcfc51897ba76395c843cbdb01480cbcb'
-                }
+                "fid": 0,
+                "input": {
+                    "cid": 0,
+                    "txid": "e02afde589b67bc5ee8bc1eb455609ba2f00e990227fedf4de22ff33ac641867"
+                },
+                "fulfillment": "cf:4:XjXJ9clYCIKLHf8CdAfLfw5BYPzweeqXU1BbJCUD30IPMO2epCdl30CIiNMYSWXq56sEaxm4nkXYw8gJHck_kzdSoLA1ahJg6kG54SHYLYLKaDNw3aMPl0Ge94tHLzEA",
+                "owners_before": [
+                    "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1"
+                ]
             }
         ],
-        'operation': 'TRANSFER',
-        'timestamp': '1487914964611',
-        'metadata': None,
-        'conditions': [
+        "operation": "TRANSFER",
+        "conditions": [
             {
-                'cid': 0,
-                'amount': 20,
-                'owners_after': [
-                    'CShGVt5vTN3g3S14QcnWoVcsEMMkvznWJ8nPfef7T78b'
-                ],
-                'condition': {
-                    'details': {
-                        'type_id': 4,
-                        'type': 'fulfillment',
-                        'signature': None,
-                        'bitmask': 32,
-                        'public_key': 'CShGVt5vTN3g3S14QcnWoVcsEMMkvznWJ8nPfef7T78b'
-                    },
-                    'uri': 'cc: 4: 20: qgWbUCT_00Iax4kkeworDvHvrV4qorXIQUmnfMQMrwA: 96'
-                }
+                "cid": 0,
+                "condition": {
+                    "uri": "cc:4:20:PsiwZR_uYx613wh4xbPSpdZ_Xzdu1gZQEqgWAk9w11Y:96",
+                    "details": {
+                        "signature": null,
+                        "type_id": 4,
+                        "type": "fulfillment",
+                        "bitmask": 32,
+                        "public_key": "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X"
+                    }
+                },
+                "amount": 2000,
+                "owners_after": [
+                    "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X"
+                ]
             },
             {
-                'cid': 1,
-                'amount': 80,
-                'owners_after': [
-                    '5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X'
-                ],
-                'condition': {
-                    'details': {
-                        'type_id': 4,
-                        'type': 'fulfillment',
-                        'signature': None,
-                        'bitmask': 32,
-                        'public_key': '5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X'
-                    },
-                    'uri': 'cc: 4: 20: PsiwZR_uYx613wh4xbPSpdZ_Xzdu1gZQEqgWAk9w11Y: 96'
-                }
+                "cid": 1,
+                "condition": {
+                    "uri": "cc:4:20:XjXJ9clYCIKLHf8CdAfLfw5BYPzweeqXU1BbJCUD30I:96",
+                    "details": {
+                        "signature": null,
+                        "type_id": 4,
+                        "type": "fulfillment",
+                        "bitmask": 32,
+                        "public_key": "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1"
+                    }
+                },
+                "amount": 8000,
+                "owners_after": [
+                    "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1"
+                ]
             }
-        ]
-    },
-    'id': '22845202130f3712bdf1fb3c1e4f63cade679b3386f15686e5e8a2ec04005b25'
+        ],
+        "asset": {
+            "id": "1"
+        },
+        "metadata": null,
+        "timestamp": "1487918371022"
+    }
 }
 ```
 
@@ -159,20 +159,18 @@ The role of this module is to get transaction list of the account
 ~/unichain-account$ python3 tx_record.py
 [
     {
-        "amount": 20,
-        "owner_before": "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X",
-        "timestamp": "1487914964611",
-        "operation": "TRANSFER",
-        "id": "22845202130f3712bdf1fb3c1e4f63cade679b3386f15686e5e8a2ec04005b25",
-        "owners_after": "CShGVt5vTN3g3S14QcnWoVcsEMMkvznWJ8nPfef7T78b"
+        "timestamp": "2017-02-24 14:39:31",
+        "owner_before": "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1",
+        "amount": 2000,
+        "owners_after": "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X",
+        "operation": "TRANSFER"
     },
     {
-        "amount": 100,
-        "owner_before": "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X",
-        "timestamp": "1487914832286",
-        "operation": "CREATE",
-        "id": "092c913f16c658de429912a47ef1989dcfc51897ba76395c843cbdb01480cbcb",
-        "owners_after": "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X"
+        "timestamp": "2017-02-24 14:34:12",
+        "owner_before": "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1",
+        "amount": 10000,
+        "owners_after": "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1",
+        "operation": "CREATE"
     }
 ]
 ```
@@ -185,16 +183,9 @@ The role of this module is to get UTXO(unspent transaction output) of the accoun
 ~/unichain-account$ python3 UTXO.py
 [
     {
-        "details": {
-            "bitmask": 32,
-            "signature": null,
-            "public_key": "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X",
-            "type_id": 4,
-            "type": "fulfillment"
-        },
-        "amount": 80,
+        "txid": "a784445834b37caf74af8ad3a88f7b64c1e0b80c0235b08a5673957f02842c00",
         "cid": 1,
-        "txid": "22845202130f3712bdf1fb3c1e4f63cade679b3386f15686e5e8a2ec04005b25"
+        "amount": 8000
     }
 ]
 ```

@@ -6,7 +6,7 @@ The role of this module is to create an account and write to the '.account' file
 
 ```
 ~/unichain-account$ python3 create_account.py
-Pick a username:
+Pick your username:
 >>>Mike
 {
     "username": "Mike",

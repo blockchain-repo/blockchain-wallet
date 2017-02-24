@@ -3,7 +3,7 @@
 """
 from collections import namedtuple
 from cryptoconditions import crypto
-import rapidjson
+import json
 import os
 
 CryptoKeypair = namedtuple('CryptoKeypair', ('signing_key', 'verifying_key'))
@@ -33,7 +33,7 @@ def create_account(username):
 
 
     f = open('.account','w')
-    json_account = rapidjson.dumps(account)
+    json_account = json.dumps(account)
     f.write(json_account)
     f.close()
     return(account)
@@ -44,6 +44,6 @@ if __name__=='__main__':
         print("this client already exists an account.")
         exit()
 
-    username = input ('Pick a username:\n')
-    print(create_account(username))
+    username = input ('Please input an username:\n')
+    print(json.dumps(create_account(username),indent=4))
     

@@ -5,9 +5,9 @@ import json
 import requests
 
 def UTXO(verifying_key):
-    url='http://127.0.0.1:9984/uniledger/v1/condition/getUnspentTxs?unspent=true&public_key={}'.format(verifying_key)
-    r=requests.get(url)
-    return r.text
+    url = 'http://127.0.0.1:9984/uniledger/v1/condition/getUnspentTxs?unspent=true&public_key={}'.format(verifying_key)
+    r = requests.get(url)
+    return(r.text)
 
 if __name__=='__main__':
     account = {}
@@ -17,4 +17,7 @@ if __name__=='__main__':
         verifying_key = account['verifying_key']
     except ValueError:
         exit('need .account')
-    print(UTXO(verifying_key))
+    utxo = json.loads(UTXO(verifying_key))
+    for u in utxo:
+        u.pop('details')
+    print(json.dumps(utxo,indent=4))

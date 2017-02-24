@@ -22,7 +22,7 @@ def create_asset_tx(verifying_key,signing_key,amount):
     headers = {'content-type': 'application/json'}
     value = json.dumps(tx.to_dict())
     r = requests.post(url, data=value, headers=headers)
-    return(r.text)
+    return(r.json())
 
 if __name__=='__main__':
     account = {}
@@ -34,9 +34,9 @@ if __name__=='__main__':
         signing_key = account['signing_key']
     except ValueError:
         exit('need .account')
-    amount = input ('Please input an integer:\n')
+    amount = input ('Please input the amount(int):\n')
     try:
         amount = int(amount)
     except ValueError:
         exit('`amount` must be an int')
-    print(create_asset_tx(verifying_key,signing_key,amount))
+    print(json.dumps(create_asset_tx(verifying_key,signing_key,amount),indent=4))

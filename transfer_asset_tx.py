@@ -39,13 +39,12 @@ def transfer_asset_tx(verifying_key,signing_key,after,amount):
     # sign with private key
     tx = tx.sign([signing_key])
     tx_id = tx.to_dict()['id']
-    print(tx.to_dict())
 
     url='http://127.0.0.1:9984/uniledger/v1/transaction/createOrTransferTx'
     headers = {'content-type': 'application/json'}
     value = json.dumps(tx.to_dict())
     r = requests.post(url, data=value, headers=headers)
-    return(r.text)
+    return(r.json())
 
 if __name__=='__main__':
     account = {}
@@ -58,11 +57,11 @@ if __name__=='__main__':
     except ValueError:
         exit('need .account')
     #TODO : validate
-    after = input ('Please input an after:\n')
-    amount = input ('Please input an integer:\n')
+    after = input ("Please input 'owners_after':\n")
+    amount = input ('Please input the amount(int):\n')
     try:
         amount = int(amount)
     except ValueError:
         exit('`amount` must be an int')
-    print(transfer_asset_tx(verifying_key,signing_key,after,amount))
+    print(json.dumps(transfer_asset_tx(verifying_key,signing_key,after,amount),indent=4))
 

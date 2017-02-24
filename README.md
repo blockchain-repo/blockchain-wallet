@@ -23,7 +23,7 @@ A simple way to generate a `CREATE` transaction.
 ```
 :~/unichain-account$ python3 create_asset_tx.py
 Please input an integer:
-10000
+>>>10000
 {
     "id": "e02afde589b67bc5ee8bc1eb455609ba2f00e990227fedf4de22ff33ac641867",
     "transaction": {

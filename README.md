@@ -18,4 +18,4 @@ The role of this module is to get transaction list of the account
 
 ####5.[`UTXO.py`](./UTXO.py)
 
-The role of this module is to get UTXO of the account
+The role of this module is to get UTXO(unspent transaction output) of the account

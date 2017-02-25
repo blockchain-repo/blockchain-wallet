@@ -5,6 +5,7 @@ from collections import namedtuple
 from cryptoconditions import crypto
 import json
 import os
+import sys
 
 CryptoKeypair = namedtuple('CryptoKeypair', ('signing_key', 'verifying_key'))
 
@@ -42,8 +43,11 @@ if __name__=='__main__':
     isAccoutExist = os.path.exists('.account')
     if isAccoutExist:
         print("this client already exists an account.")
-        exit()
-
-    username = input ('Please input an username:\n')
+        sys.exit()
+    if not len(sys.argv)==2:
+        print("Please provide one parameter of username!")
+        sys.exit()
+    username = sys.argv[1]
+    # username = input ('Please input an username:\n')
     print(json.dumps(create_account(username),indent=4))
     

@@ -3,6 +3,7 @@
 """
 import json
 import requests
+import sys
 from bigchaindb.common.transaction import Transaction, Asset
 
 def create_asset_tx(verifying_key,signing_key,amount):
@@ -34,7 +35,12 @@ if __name__=='__main__':
         signing_key = account['signing_key']
     except ValueError:
         exit('need .account')
-    amount = input ('Please input the amount(int):\n')
+
+    if not len(sys.argv)==2:
+        print("Please provide one parameter of amount(int)!")
+        sys.exit()
+    amount = sys.argv[1]
+
     try:
         amount = int(amount)
     except ValueError:

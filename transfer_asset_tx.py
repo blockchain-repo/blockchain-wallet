@@ -3,6 +3,7 @@
 """
 import json
 import requests
+import sys
 from UTXO import UTXO
 from bigchaindb.common.transaction import Transaction, Asset, Fulfillment, Condition
 
@@ -57,8 +58,11 @@ if __name__=='__main__':
     except ValueError:
         exit('need .account')
     #TODO : validate
-    after = input ("Please input 'owners_after':\n")
-    amount = input ('Please input the amount(int):\n')
+    if not len(sys.argv)==3:
+        print("Please provide two parameters for owner_after(key) and amount(int)!")
+        sys.exit()
+    after = sys.argv[1]
+    amount = sys.argv[2]
     try:
         amount = int(amount)
     except ValueError:

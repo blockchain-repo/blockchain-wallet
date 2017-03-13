@@ -4,7 +4,7 @@
 import json
 import requests
 import sys
-from bigchaindb.common.transaction import Transaction, Asset
+from common.transaction import Transaction, Asset
 
 def create_asset_tx(verifying_key,signing_key,amount,host_ip,host_port):
     #print(verifying_key,signing_key,amount)

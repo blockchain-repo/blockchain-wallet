@@ -1,4 +1,4 @@
-"""A simple way to generate a `TRANSFER` transaction.
+"""A simple way to generate a `TRANSFER` transaction to merge utxo.
 
 """
 import json
@@ -7,7 +7,7 @@ import sys
 from account_utxo_balance import UTXO
 from common.transaction import Transaction, Asset, Fulfillment, Condition
 
-def transfer_asset_tx(verifying_key,signing_key,after,amount,host_ip,host_port):
+def merge_utxo(verifying_key,signing_key,host_ip,host_port):
     #print(verifying_key,signing_key,amount)
     # Digital Asset Definition (e.g. RMB)
     asset = Asset(data={'money':'RMB'},data_id='1',divisible=True)
@@ -18,6 +18,7 @@ def transfer_asset_tx(verifying_key,signing_key,after,amount,host_ip,host_port):
     balance = 0
     utxo = UTXO(verifying_key,host_ip,host_port)
     utxo = json.loads(utxo)
+    length = len(utxo)
     for i in utxo:
         f = Fulfillment.from_dict({
             'fulfillment':i['details'] ,
@@ -31,12 +32,12 @@ def transfer_asset_tx(verifying_key,signing_key,after,amount,host_ip,host_port):
         balance += i['amount']
 
     # create trnsaction
-    if balance < amount:
-        exit('balance<amount')
-    elif balance == amount:
-        tx = Transaction.transfer(inputs, [([after],amount)], asset)
+    if balance <= 0:
+        exit('No need to merge, because of lack of balance')
+    elif length <= 1:
+        exit('No need to merge, because of a small amount of utxo')
     else:
-        tx = Transaction.transfer(inputs, [([after],amount),([verifying_key],balance-amount)],asset)
+        tx = Transaction.transfer(inputs, [([verifying_key],balance)], asset)
     # sign with private key
     tx = tx.sign([signing_key])
     tx_id = tx.to_dict()['id']
@@ -68,14 +69,7 @@ if __name__=='__main__':
         exit('need .config')
 
     #TODO : validate
-    if not len(sys.argv)==3:
+    if not len(sys.argv)==1:
         print("Please provide two parameters for owner_after(key) and amount(int)!")
         sys.exit()
-    after = sys.argv[1]
-    amount = sys.argv[2]
-    try:
-        amount = int(amount)
-    except ValueError:
-        exit('`amount` must be an int')
-    print(json.dumps(transfer_asset_tx(verifying_key,signing_key,after,amount,host_ip,host_port),indent=4))
-
+    print(json.dumps(merge_utxo(verifying_key,signing_key,host_ip,host_port),indent=4))

@@ -208,6 +208,7 @@ $ python3 account_utxo_balance.py
 ]
 ```
 
+ **merge UTXO:** 
 ```
 ~/unichain-account$ python3 merge_utxo.py 
 {

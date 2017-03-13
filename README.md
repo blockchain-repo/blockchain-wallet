@@ -151,20 +151,19 @@ The role of this module is to get transaction list of the account
 ~/unichain-account$ python3 tx_record.py
 [
     {
-        "timestamp": "2017-02-24 14:34:12",
-        "owner_before": "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1",
-        "amount": 10000,
-        "owners_after": "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1",
+        "amount": 1000,
+        "owners_after": "3yLFxcMPnc3ozT82Csn9EDbw1vBVSqYJq6oxF9FHwF7Y",
+        "owner_before": "3yLFxcMPnc3ozT82Csn9EDbw1vBVSqYJq6oxF9FHwF7Y",
+        "timestamp": "2017-03-13 10:54:57",
         "operation": "CREATE"
     },
     {
-        "timestamp": "2017-02-24 14:39:31",
-        "owner_before": "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1",
-        "amount": 2000,
+        "amount": 200,
         "owners_after": "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X",
+        "owner_before": "3yLFxcMPnc3ozT82Csn9EDbw1vBVSqYJq6oxF9FHwF7Y",
+        "timestamp": "2017-03-13 10:57:09",
         "operation": "TRANSFER"
     }
-
 ]
 ```
 

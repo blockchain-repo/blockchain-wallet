@@ -15,7 +15,7 @@ def time_stamp(timeNum):
 def tx_record(verifying_key,host_ip,host_port):
     # TODO:URL
     #url='http://127.0.0.1:9984/uniledger/v1/transaction/getTxRecord?public_key={}'.format('Gvexu49oskc6ptYwzqP9q8sL9jLxjNZNMBWgVVhUtPmD')
-    url='http://{}:{]/uniledger/v1/transaction/getTxRecord?public_key={}'.format(host_ip,host_port,verifying_key)
+    url='http://{}:{}/uniledger/v1/transaction/getTxRecord?public_key={}'.format(host_ip,host_port,verifying_key)
     r=requests.get(url)
     return(r.text)
 

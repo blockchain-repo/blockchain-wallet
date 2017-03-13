@@ -4,7 +4,7 @@
 import json
 import requests
 import sys
-from UTXO import UTXO
+from account_utxo_balance import UTXO
 from bigchaindb.common.transaction import Transaction, Asset, Fulfillment, Condition
 
 def transfer_asset_tx(verifying_key,signing_key,after,amount,host_ip,host_port):
@@ -16,7 +16,7 @@ def transfer_asset_tx(verifying_key,signing_key,after,amount,host_ip,host_port):
 
     inputs = []
     balance = 0
-    utxo = UTXO(verifying_key)
+    utxo = UTXO(verifying_key,host_ip,host_port)
     utxo = json.loads(utxo)
     for i in utxo:
         f = Fulfillment.from_dict({

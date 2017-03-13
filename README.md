@@ -19,59 +19,57 @@ The role of this module is to create an account and write to the '.account' file
 A simple way to generate a `CREATE` transaction.
 
 ```
-:~/unichain-account$ python3 create_asset_tx.py
-Please input the amount(int):
->>>10000
+~/unichain-account$ python3 create_asset_tx.py 1000
 {
-    "id": "e02afde589b67bc5ee8bc1eb455609ba2f00e990227fedf4de22ff33ac641867",
     "transaction": {
-        "asset": {
-            "divisible": true,
-            "id": "1",
-            "data": {
-                "money": "RMB"
-            },
-            "updatable": false,
-            "refillable": false
-        },
-        "timestamp": "1487918052087",
-        "conditions": [
-            {
-                "cid": 0,
-                "condition": {
-                    "uri": "cc:4:20:XjXJ9clYCIKLHf8CdAfLfw5BYPzweeqXU1BbJCUD30I:96",
-                    "details": {
-                        "type_id": 4,
-                        "public_key": "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1",
-                        "type": "fulfillment",
-                        "signature": null,
-                        "bitmask": 32
-                    }
-                },
-                "owners_after": [
-                    "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1"
-                ],
-                "amount": 10000
-            }
-        ],
-        "operation": "CREATE",
         "metadata": {
-            "id": "99e26e5a-46db-43d2-936c-7e7d1b274013",
+            "id": "d06368b3-b72f-4f39-bede-ecca4f8bab96",
             "data": {
                 "planet": "earth"
             }
         },
+        "timestamp": "1489373697905",
         "fulfillments": [
             {
-                "fid": 0,
-                "fulfillment": "cf:4:XjXJ9clYCIKLHf8CdAfLfw5BYPzweeqXU1BbJCUD30IYu1QGxAOT-upQL1lVgi--Dx3R4r_7uoiGgRyIpmWAfR3nR73N8-AqBR2PiEM71ESwlsz4B3sVeSKJsF4NAqcM",
+                "fulfillment": "cf:4:LCWslQuppEihgphGm0R7v0jHLd67v4JIQGvuQqbo6aME_LdhO4-yM-CK2qyKcFy7llAB5pSbMa2NFWDHTLd3WminowKHAotztu8bpwQX9-buPH9Ha79poFRTOa1luswL",
+                "input": null,
                 "owners_before": [
-                    "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1"
+                    "3yLFxcMPnc3ozT82Csn9EDbw1vBVSqYJq6oxF9FHwF7Y"
                 ],
-                "input": null
+                "fid": 0
             }
-        ]
+        ],
+        "operation": "CREATE",
+        "conditions": [
+            {
+                "owners_after": [
+                    "3yLFxcMPnc3ozT82Csn9EDbw1vBVSqYJq6oxF9FHwF7Y"
+                ],
+                "amount": 1000,
+                "cid": 0,
+                "condition": {
+                    "details": {
+                        "type": "fulfillment",
+                        "signature": null,
+                        "public_key": "3yLFxcMPnc3ozT82Csn9EDbw1vBVSqYJq6oxF9FHwF7Y",
+                        "bitmask": 32,
+                        "type_id": 4
+                    },
+                    "uri": "cc:4:20:LCWslQuppEihgphGm0R7v0jHLd67v4JIQGvuQqbo6aM:96"
+                }
+            }
+        ],
+        "asset": {
+            "id": "1",
+            "updatable": false,
+            "refillable": false,
+            "divisible": true,
+            "data": {
+                "money": "RMB"
+            }
+        }
     },
+    "id": "573fbfdc672714fbb4318e61f704d7ab479faa1319ba831b5f2015b03e4cf8dd",
     "version": 1
 }
 ```

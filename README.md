@@ -5,13 +5,11 @@
 The role of this module is to create an account and write to the '.account' file
 
 ```
-~/unichain-account$ python3 create_account.py
-Please input an username:
->>>Mike
+~/unichain-account$ python3 create_account.py MIKE
 {
-    "username": "Mike",
-    "verifying_key": "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1",
-    "signing_key": "HStrGbff99t69ipzqw9q6JzqjMSF9UaMGHwJ2qmCWMwo"
+    "username": "MIKE",
+    "verifying_key": "3yLFxcMPnc3ozT82Csn9EDbw1vBVSqYJq6oxF9FHwF7Y",
+    "signing_key": "3JMBk1Qsrj6psv697CLVNxS7C3t9ZW4Zf5aweHVZCMZz"
 }
 ```
 

@@ -1,5 +1,10 @@
 # unichain-client
 
+####0.[`install.sh`](./install.sh)
+
+Install requirement with `./install.sh`
+
+
 ####1.[`create_account.py`](./create_account.py)
 
 The role of this module is to create an account and write to the '.account' file

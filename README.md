@@ -79,70 +79,66 @@ A simple way to generate a `CREATE` transaction.
 A simple way to generate a `TRANSFER` transaction.
 
 ```
-~/unichain-account$ python3 transfer_asset_tx.py
-Please input 'owners_after':
->>>5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X
-Please input the amount(int):
->>>2000
+~/unichain-account$ python3 transfer_asset_tx.py 5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X 200
 {
-    "id": "a784445834b37caf74af8ad3a88f7b64c1e0b80c0235b08a5673957f02842c00",
+    "id": "42d67b67c675370ccf160751c7d882910a9370959ec0b136f35f29ccbd56eb22",
     "version": 1,
     "transaction": {
-        "fulfillments": [
-            {
-                "fid": 0,
-                "input": {
-                    "cid": 0,
-                    "txid": "e02afde589b67bc5ee8bc1eb455609ba2f00e990227fedf4de22ff33ac641867"
-                },
-                "fulfillment": "cf:4:XjXJ9clYCIKLHf8CdAfLfw5BYPzweeqXU1BbJCUD30IPMO2epCdl30CIiNMYSWXq56sEaxm4nkXYw8gJHck_kzdSoLA1ahJg6kG54SHYLYLKaDNw3aMPl0Ge94tHLzEA",
-                "owners_before": [
-                    "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1"
-                ]
-            }
-        ],
         "operation": "TRANSFER",
-        "conditions": [
-            {
-                "cid": 0,
-                "condition": {
-                    "uri": "cc:4:20:PsiwZR_uYx613wh4xbPSpdZ_Xzdu1gZQEqgWAk9w11Y:96",
-                    "details": {
-                        "signature": null,
-                        "type_id": 4,
-                        "type": "fulfillment",
-                        "bitmask": 32,
-                        "public_key": "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X"
-                    }
-                },
-                "amount": 2000,
-                "owners_after": [
-                    "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X"
-                ]
-            },
-            {
-                "cid": 1,
-                "condition": {
-                    "uri": "cc:4:20:XjXJ9clYCIKLHf8CdAfLfw5BYPzweeqXU1BbJCUD30I:96",
-                    "details": {
-                        "signature": null,
-                        "type_id": 4,
-                        "type": "fulfillment",
-                        "bitmask": 32,
-                        "public_key": "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1"
-                    }
-                },
-                "amount": 8000,
-                "owners_after": [
-                    "7Lktu1cbgTwLHVGXw64AVnRjZwr5Yp9fSdwu7T8dggt1"
-                ]
-            }
-        ],
+        "metadata": null,
+        "timestamp": "1489373829003",
         "asset": {
             "id": "1"
         },
-        "metadata": null,
-        "timestamp": "1487918371022"
+        "fulfillments": [
+            {
+                "fulfillment": "cf:4:LCWslQuppEihgphGm0R7v0jHLd67v4JIQGvuQqbo6aOuI6SQkVlSsXZAopLAiPwwIq4R8QPzkhj1xBsh-ZI2nggI7WNW9vkI59aVtmn_Mfuch31R3q4Er3u6a-1JlO8E",
+                "fid": 0,
+                "input": {
+                    "cid": 0,
+                    "txid": "573fbfdc672714fbb4318e61f704d7ab479faa1319ba831b5f2015b03e4cf8dd"
+                },
+                "owners_before": [
+                    "3yLFxcMPnc3ozT82Csn9EDbw1vBVSqYJq6oxF9FHwF7Y"
+                ]
+            }
+        ],
+        "conditions": [
+            {
+                "owners_after": [
+                    "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X"
+                ],
+                "condition": {
+                    "details": {
+                        "type": "fulfillment",
+                        "signature": null,
+                        "public_key": "5E5mXSHUX4mLJyL3jpbNhpoNputENJ9Wud7wyhBjT31X",
+                        "bitmask": 32,
+                        "type_id": 4
+                    },
+                    "uri": "cc:4:20:PsiwZR_uYx613wh4xbPSpdZ_Xzdu1gZQEqgWAk9w11Y:96"
+                },
+                "cid": 0,
+                "amount": 200
+            },
+            {
+                "owners_after": [
+                    "3yLFxcMPnc3ozT82Csn9EDbw1vBVSqYJq6oxF9FHwF7Y"
+                ],
+                "condition": {
+                    "details": {
+                        "type": "fulfillment",
+                        "signature": null,
+                        "public_key": "3yLFxcMPnc3ozT82Csn9EDbw1vBVSqYJq6oxF9FHwF7Y",
+                        "bitmask": 32,
+                        "type_id": 4
+                    },
+                    "uri": "cc:4:20:LCWslQuppEihgphGm0R7v0jHLd67v4JIQGvuQqbo6aM:96"
+                },
+                "cid": 1,
+                "amount": 800
+            }
+        ]
     }
 }
 ```

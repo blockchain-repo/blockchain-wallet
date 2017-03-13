@@ -167,12 +167,12 @@ The role of this module is to get transaction list of the account
 ]
 ```
 
-####5.[`UTXO.py`](./UTXO.py)
+####5.[`account_utxo_balance.py`](./account_utxo_balance.py)
 
 The role of this module is to get UTXO(unspent transaction output) of the account
 
 ```
-~/unichain-account$ python3 UTXO.py
+~/unichain-account$ python3 account_utxo_balance.py
 [
     {
         "txid": "a784445834b37caf74af8ad3a88f7b64c1e0b80c0235b08a5673957f02842c00",

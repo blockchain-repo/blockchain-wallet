@@ -32,7 +32,7 @@ def transfer_asset_tx(verifying_key,signing_key,after,amount,host_ip,host_port):
 
     # create trnsaction
     if balance < amount:
-        exit('balance<amount')
+        return('balance<amount')
     elif balance == amount:
         tx = Transaction.transfer(inputs, [([after],amount)], asset)
     else:

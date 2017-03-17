@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Unichain-Account</title>
+    <style type="text/css">  
+        .attribute {  
+        margin-bottom: 15px;  
+        padding-bottom: 15px;  
+        border-bottom: 1px solid #d9d9d9;  
+        }  
+       .attribute dl {  
+        font-size: 12px;  
+        margin: 12px 0;  
+        }
+        .attribute dl:before,
+        .attribute dl:after {  
+        content: " ";  
+        display: table;  
+        }  
+        .attribute dl:after {  
+        clear: both;  
+        }  
+        .attribute dl > dt {  
+        font-weight: normal;  
+        float: left !important;  
+        }  
+        .attribute dl > dd {  
+        margin-left: 70px;  
+        }  
+        .attribute dl > dd .serial-num {  
+        margin-left: 40px;  
+        }  
+    </style>  
+</head>
+
+<h1>Unichain Account</h1>
+
+<body>
+{% if host_conf %}
+<div class="attribute">
+    <dl>
+        <dt>Host ip &nbsp&nbsp: </dt>
+        <dd>{{host_conf.host_ip}}</dd>
+    </dl>
+    <dl>
+        <dt>Host port : </dt>
+        <dd>{{host_conf.host_port}}</dd>
+    </dl>
+</div>
+{% else %}
+    <a href="/config">create config</a>
+{% endif %}
+
+{% if account %}
+<div class="attribute">  
+    <dl>  
+        <dt>User name &nbsp&nbsp&nbsp: </dt>  
+        <dd>{{account.username}}</dd>  
+    </dl>  
+    <dl>  
+        <dt>Publick key &nbsp: </dt>  
+        <dd>{{account.verifying_key}}</dd>  
+    </dl>  
+    <dl>  
+        <dt>Private key &nbsp: </dt>  
+        <dd>{{account.signing_key}}</dd>  
+    </dl>
+    <dl>
+        <dt>UTXO balance : </dt>
+        <dd>{{balance}}</dd>
+    </dl>
+</div>
+{% else %}
+    <a href="/account">create account</a>
+{% endif %}
+
+<p><a href="/utxo">account utxo</a></p>
+<p><a href="/merge">merge account utxo</a></p>
+<p><a href="/create">create asset transaction</a></p>
+<p><a href="/transfer">transfer asset transaction</a></p>
+<p><a href="/record">record of transaction</a></p>
+
+</body>
+</html>

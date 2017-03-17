@@ -33,9 +33,9 @@ def merge_utxo(verifying_key,signing_key,host_ip,host_port):
 
     # create trnsaction
     if balance <= 0:
-        exit('No need to merge, because of lack of balance')
+        return('No need to merge, because of lack of balance')
     elif length <= 1:
-        exit('No need to merge, because of a small amount of utxo')
+        return('No need to merge, because of a small amount of utxo')
     else:
         tx = Transaction.transfer(inputs, [([verifying_key],balance)], asset)
     # sign with private key

@@ -1,5 +1,10 @@
 # unichain-client
 
+####0.[`install.sh`](./install.sh)
+
+Install requirement with `./install.sh`
+
+
 ####1.[`create_account.py`](./create_account.py)
 
 The role of this module is to create an account and write to the '.account' file
@@ -178,6 +183,106 @@ The role of this module is to get UTXO(unspent transaction output) of the accoun
         "txid": "a784445834b37caf74af8ad3a88f7b64c1e0b80c0235b08a5673957f02842c00",
         "cid": 1,
         "amount": 8000
+    }
+]
+```
+
+####6.[`merge_utxo.py`](./merge_utxo.py)
+
+The role of this module is to merge UTXO(unspent transaction output)
+
+ **Before merge:** 
+```
+$ python3 account_utxo_balance.py 
+[
+    {
+        "txid": "36632526da8fdf31934158a6aacd1c21ee26003858d184fb979ced9df2d07062",
+        "cid": 0,
+        "amount": 2000
+    },
+    {
+        "txid": "675afce0e8633017270bea6743ef28ae09aeb702743790b4255f237d7d1c4796",
+        "cid": 0,
+        "amount": 100
+    }
+]
+```
+
+ **merge UTXO:** 
+```
+~/unichain-account$ python3 merge_utxo.py 
+{
+    "id": "a96bef931c04eab65c2dc48ef19f83c5c3d0ddd0fed1d7c2da46f30f399d3729",
+    "version": 1,
+    "transaction": {
+        "conditions": [
+            {
+                "owners_after": [
+                    "C4ZFz1GVjeeEG2QK6yeHdUifff7ZGzBzgnzAi9DBw4qj"
+                ],
+                "amount": 2100,
+                "condition": {
+                    "uri": "cc:4:20:pFnF8dORD4qxWr5ySk1lHLthiCKphx2WVJHPzemVDIY:96",
+                    "details": {
+                        "type_id": 4,
+                        "bitmask": 32,
+                        "signature": null,
+                        "type": "fulfillment",
+                        "public_key": "C4ZFz1GVjeeEG2QK6yeHdUifff7ZGzBzgnzAi9DBw4qj"
+                    }
+                },
+                "cid": 0
+            }
+        ],
+        "fulfillments": [
+            {
+                "fulfillment": "cf:4:pFnF8dORD4qxWr5ySk1lHLthiCKphx2WVJHPzemVDIYCrA4PFrMsKaJ25K2x-PRs9Qv15zdK2A-ZuWr8CNg3F7_sa4MGstjh0ewjm3-HBpunRQq8XVcuSBy0aMceSVMJ",
+                "fid": 0,
+                "input": {
+                    "txid": "36632526da8fdf31934158a6aacd1c21ee26003858d184fb979ced9df2d07062",
+                    "cid": 0
+                },
+                "owners_before": [
+                    "C4ZFz1GVjeeEG2QK6yeHdUifff7ZGzBzgnzAi9DBw4qj"
+                ]
+            },
+            {
+                "fulfillment": {
+                    "type_id": 4,
+                    "bitmask": 32,
+                    "signature": null,
+                    "type": "fulfillment",
+                    "public_key": "C4ZFz1GVjeeEG2QK6yeHdUifff7ZGzBzgnzAi9DBw4qj"
+                },
+                "fid": 1,
+                "input": {
+                    "txid": "675afce0e8633017270bea6743ef28ae09aeb702743790b4255f237d7d1c4796",
+                    "cid": 0
+                },
+                "owners_before": [
+                    "C4ZFz1GVjeeEG2QK6yeHdUifff7ZGzBzgnzAi9DBw4qj"
+                ]
+            }
+        ],
+        "metadata": null,
+        "timestamp": "1489397107315",
+        "asset": {
+            "id": "1"
+        },
+        "operation": "TRANSFER"
+    }
+}
+```
+
+
+ **After merge:** 
+```
+~/unichain-account$ python3 account_utxo_balance.py 
+[
+    {
+        "amount": 2100,
+        "txid": "a96bef931c04eab65c2dc48ef19f83c5c3d0ddd0fed1d7c2da46f30f399d3729",
+        "cid": 0
     }
 ]
 ```

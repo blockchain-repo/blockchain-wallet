@@ -182,11 +182,9 @@ def transfer():
                 transfer = transfer_asset_tx(verifying_key,signing_key,request.form['after'],int(request.form['amount']),host_ip,host_port)
             return jsonify(result = transfer)
         except:
-            raise
             return jsonify({'error':'500'})
 
 
 if __name__ == '__main__':
-    app.debug=True
     app.run(host='0.0.0.0', port=8081)
 

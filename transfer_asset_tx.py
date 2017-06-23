@@ -17,7 +17,7 @@ def transfer_asset_tx(verifying_key,signing_key,after,amount,host_ip,host_port):
     inputs = []
     balance = 0
     utxo = UTXO(verifying_key,host_ip,host_port)
-    utxo = json.loads(utxo)
+    utxo = json.loads(utxo)["data"]
     for i in utxo:
         f = Fulfillment.from_dict({
             'fulfillment':i['details'] ,

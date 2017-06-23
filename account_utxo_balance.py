@@ -26,7 +26,10 @@ if __name__=='__main__':
     except ValueError:
         exit('need .config')
 
-    utxo = json.loads(UTXO(verifying_key,host_ip,host_port))
+    utxo = json.loads(UTXO(verifying_key,host_ip,host_port))["data"]
+    # utxo = json.dumps(utxo)
+    # print(utxo)
     for u in utxo:
+        # print(u)
         u.pop('details')
     print(json.dumps(utxo,indent=4))

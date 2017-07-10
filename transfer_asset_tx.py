@@ -10,7 +10,7 @@ from common.transaction import Transaction, Asset, Fulfillment, Condition
 def transfer_asset_tx(verifying_key,signing_key,after,amount,host_ip,host_port):
     #print(verifying_key,signing_key,amount)
     # Digital Asset Definition (e.g. RMB)
-    asset = Asset(data={'money':'RMB'},data_id='1',divisible=True)
+    asset = Asset(data={'money':'RMB'},data_id='20170628150000',divisible=True)
     # Metadata Definition
     metadata = {'planet': 'earth'}
 

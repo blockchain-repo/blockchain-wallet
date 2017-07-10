@@ -37,7 +37,7 @@ def home():
             host_ip = config['host_ip']
             host_port = config['host_port']
             utxo = json.loads(UTXO(verifying_key,host_ip,host_port))
-            for i in utxo:
+            for i in utxo['data']:
                 balance += i['amount']
     except:
         pass
@@ -90,7 +90,8 @@ def account_utxo():
             host_ip = config['host_ip']
             host_port = config['host_port']
             utxo = json.loads(UTXO(verifying_key,host_ip,host_port))
-            for u in utxo:
+            print(utxo)
+            for u in utxo['data']:
                 u.pop('details')
             return jsonify(result = utxo)
     except:
@@ -186,5 +187,6 @@ def transfer():
 
 
 if __name__ == '__main__':
+    app.debug = True
     app.run(host='0.0.0.0', port=8081)
 

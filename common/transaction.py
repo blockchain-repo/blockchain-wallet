@@ -7,10 +7,10 @@ from cryptoconditions import (Fulfillment as CCFulfillment,
                               PreimageSha256Fulfillment)
 from cryptoconditions.exceptions import ParsingError
 
-from common.crypto import SigningKey, hash_data
-from common.exceptions import (KeypairMismatchException,
+from bigchaindb.common.crypto import SigningKey, hash_data
+from bigchaindb.common.exceptions import (KeypairMismatchException,
                                           InvalidHash, InvalidSignature)
-from common.util import serialize, gen_timestamp
+from bigchaindb.common.util import serialize, gen_timestamp
 
 
 class Fulfillment(object):
@@ -208,7 +208,7 @@ class Condition(object):
                 owners before a Transaction was confirmed.
     """
 
-    def __init__(self, fulfillment, owners_after=None, amount=1, isfreeze=False):
+    def __init__(self, fulfillment, owners_after=None, amount=1,isfreeze=False):
         """Condition shims a Cryptocondition condition for BigchainDB.
 
             Args:
@@ -268,12 +268,11 @@ class Condition(object):
             'owners_after': self.owners_after,
             'condition': condition,
             'amount': self.amount,
-            'isfreeze': self.isfreeze
+            'isfreeze':self.isfreeze
         }
         if cid is not None:
             cond['cid'] = cid
         return cond
-
     #
     # @classmethod
     # def generate(cls, owners_after):
@@ -332,7 +331,7 @@ class Condition(object):
     #         return cls(threshold_cond, owners_after)
 
     @classmethod
-    def generate(cls, public_keys, amount, isfreeze=False):
+    def generate(cls, public_keys, amount,isfreeze=False):
         """Generates a Output from a specifically formed tuple or list.
 
             Note:
@@ -347,7 +346,7 @@ class Condition(object):
                     the users that should be able to fulfill the Condition
                     that is being created.
                 amount (:obj:`int`): The amount locked by the Output.
-
+                
             Returns:
                 An Output that can be used in a Transaction.
 
@@ -355,7 +354,7 @@ class Condition(object):
                 TypeError: If `public_keys` is not an instance of `list`.
                 ValueError: If `public_keys` is an empty list.
         """
-        # TODO  amout issue see: https://github.com/bigchaindb/bigchaindb/pull/1286
+        #TODO  amout issue see: https://github.com/bigchaindb/bigchaindb/pull/1286
         threshold = len(public_keys)
         if not isinstance(amount, int):
             raise TypeError('`amount` must be a int')
@@ -377,7 +376,7 @@ class Condition(object):
             initial_cond = ThresholdSha256Fulfillment(threshold=threshold)
             threshold_cond = reduce(cls._gen_condition, public_keys,
                                     initial_cond)
-            return cls(threshold_cond, public_keys, amount=amount, isfreeze=isfreeze)
+            return cls(threshold_cond, public_keys, amount=amount,isfreeze=isfreeze)
 
     @classmethod
     def _gen_condition(cls, initial, current):
@@ -450,7 +449,9 @@ class Condition(object):
         except KeyError:
             # NOTE: Hashlock condition case
             fulfillment = cond['condition']['uri']
-        return cls(fulfillment, cond['owners_after'], cond['amount'], isfreeze=cond['isfreeze'])
+        return cls(fulfillment, cond['owners_after'], cond['amount'],isfreeze=cond['isfreeze'])
+
+
 
 
 class Asset(object):
@@ -625,11 +626,11 @@ class Transaction(object):
     # UNFREEZEASSET = 'UNFREEZE'
     METADATA = "METADATA"
 
-    ALLOWED_OPERATIONS = (CREATE, TRANSFER, GENESIS, CONTRACT, INTERIM, METADATA)
+    ALLOWED_OPERATIONS = (CREATE, TRANSFER, GENESIS, CONTRACT,INTERIM,METADATA)
     VERSION = 1
 
     def __init__(self, operation, asset, fulfillments=None, conditions=None,
-                 metadata=None, timestamp=None, version=None, Relation=None, Contract=None):
+                 metadata=None, timestamp=None, version=None,Relation=None,Contract=None,chainType=""):
         """The constructor allows to create a customizable Transaction.
 
             Note:
@@ -659,7 +660,7 @@ class Transaction(object):
 
         # Only assets for 'CREATE' operations can be un-defined.
         if (asset and not isinstance(asset, Asset) or
-                                not asset and operation != Transaction.CREATE and operation != Transaction.CONTRACT and operation != Transaction.INTERIM and operation != Transaction.METADATA):
+                not asset and operation != Transaction.CREATE and operation != Transaction.CONTRACT and operation != Transaction.INTERIM and operation != Transaction.METADATA):
             raise TypeError('`asset` must be an Asset instance')
 
         if conditions and not isinstance(conditions, list):
@@ -686,10 +687,11 @@ class Transaction(object):
         self.metadata = metadata
         self.Relation = Relation
         self.Contract = Contract
+        self.chainType = chainType
+
 
     @classmethod
-    def create(cls, tx_signers, recipients, operation=CREATE, metadata=None, asset=None, Relation=None, Contract=None,
-               version=None):
+    def create(cls, tx_signers, recipients,operation=CREATE, metadata=None, asset=None,Relation=None,Contract=None,chainType="",version=None):
         """A simple way to generate a `CREATE` transaction.
 
             Note:
@@ -741,8 +743,8 @@ class Transaction(object):
         # generate inputs
         inputs.append(Fulfillment.generate(tx_signers))
 
-        return cls(operation, asset, fulfillments=inputs, conditions=conditions, metadata=metadata, Relation=Relation,
-                   Contract=Contract, version=version)
+        return cls(operation, asset, fulfillments=inputs, conditions=conditions, metadata=metadata,Relation=Relation,Contract=Contract,chainType=chainType,version=version)
+
 
     @classmethod
     def generate(cls, public_keys, amount):
@@ -917,8 +919,8 @@ class Transaction(object):
         return cls(cls.TRANSFER, asset=asset, fulfillments=inputs, conditions=conditions, metadata=metadata)
 
     @classmethod
-    def savedata(cls, tx_signers, recipients, metadata, operation=METADATA, asset=None, Relation=None, Contract=None,
-                 version=None):
+    def savedata(cls, tx_signers, recipients, metadata, operation=METADATA,  asset=None, Relation=None, Contract=None,chainType= "",
+               version=None):
         """A simple way to generate a `CREATE` transaction.
 
             Note:
@@ -971,7 +973,7 @@ class Transaction(object):
         inputs.append(Fulfillment.generate(tx_signers))
 
         return cls(operation, asset, fulfillments=inputs, conditions=conditions, metadata=metadata, Relation=Relation,
-                   Contract=Contract, version=version)
+                   Contract=Contract,chainType = chainType, version=version)
 
     @classmethod
     def freeze_asset(cls, inputs, recipients, asset, metadata=None):
@@ -1110,7 +1112,7 @@ class Transaction(object):
             return public_key.decode()
 
         key_pairs = {gen_public_key(SigningKey(private_key)):
-                         SigningKey(private_key) for private_key in private_keys}
+                     SigningKey(private_key) for private_key in private_keys}
         # TODO 'important' sign to fulfillments. the len(fulfillments) != the len(conditons).  cause by divisible assets
         zippedIO = enumerate(zip(self.fulfillments, self.conditions))
         for index, (fulfillment, condition) in zippedIO:
@@ -1119,14 +1121,53 @@ class Transaction(object):
             #       previously signed ones.
             tx_partial = Transaction(self.operation, self.asset, fulfillments=[fulfillment],
                                      conditions=[condition], metadata=self.metadata,
-                                     timestamp=self.timestamp, version=self.version, Relation=self.Relation,
-                                     Contract=self.Contract)
+                                     timestamp=self.timestamp, version=self.version,Relation=self.Relation,Contract=self.Contract,chainType=self.chainType)
 
             tx_partial_dict = tx_partial.to_dict()
             tx_partial_dict = Transaction._remove_signatures(tx_partial_dict)
             tx_serialized = Transaction._to_str(tx_partial_dict)
+            # print("tx_serialized==",tx_serialized)
             self._sign_fulfillment(fulfillment, index, tx_serialized,
                                    key_pairs)
+        return self
+
+    def signNode(self,signing_key):
+        Contract = deepcopy(self.Contract)
+
+        contract_owners = Contract["ContractBody"]["ContractOwners"]
+        contract_signatures = []
+        # print(Contract)
+
+        Contract["Contract"].pop('ContractOwners')
+        Contract["Contract"].pop('ContractSignatures')
+
+        signing_str = serialize(Contract)
+        signing_key = SigningKey(signing_key)
+
+        for contract_owner in contract_owners:
+            contract_signature = signing_key.sign(signing_str.encode()).decode()
+            contract_signatures.append(contract_signature)
+            # print(contract_signature)
+        self.Contract["Contract"]["ContractSignatures"] = contract_signatures
+        # print(self.Contract)
+        return self
+
+    def signOwner(self,signing_key):
+        voters = self.Relation["voters"]
+        signatures = []
+
+        tx_dict = deepcopy(self.to_dict())["transaction"]
+        tx_dict.pop('Relation')
+        tx_dict.pop('Contract')
+
+        signing_str = serialize(tx_dict)
+        signing_key = SigningKey(signing_key)
+
+        for voter in voters:
+            signature = signing_key.sign(signing_str.encode()).decode()
+            signatures.append(signature)
+
+        self.Relation["Signatures"] = signatures
         return self
 
     def _sign_fulfillment(self, fulfillment, index, tx_serialized, key_pairs):
@@ -1246,7 +1287,7 @@ class Transaction(object):
             Returns:
                 bool: If all Fulfillments are valid.
         """
-        if self.operation in (Transaction.CREATE, Transaction.GENESIS, Transaction.CONTRACT, Transaction.INTERIM):
+        if self.operation in (Transaction.CREATE, Transaction.GENESIS,Transaction.CONTRACT,Transaction.INTERIM):
             # NOTE: Since in the case of a `CREATE`-transaction we do not have
             #       to check for input_conditions, we're just submitting dummy
             #       values to the actual method. This simplifies it's logic
@@ -1285,7 +1326,7 @@ class Transaction(object):
             """
             tx = Transaction(self.operation, self.asset, fulfillments=[fulfillment],
                              conditions=[condition], metadata=self.metadata, timestamp=self.timestamp,
-                             version=self.version, Relation=self.Relation, Contract=self.Contract)
+                             version=self.version,Relation=self.Relation,Contract=self.Contract,chainType=self.chainType)
             tx_dict = tx.to_dict()
             tx_dict = Transaction._remove_signatures(tx_dict)
             tx_serialized = Transaction._to_str(tx_dict)
@@ -1330,7 +1371,7 @@ class Transaction(object):
         except (TypeError, ValueError, ParsingError):
             return False
 
-        if operation in (Transaction.CREATE, Transaction.GENESIS, Transaction.CONTRACT, Transaction.INTERIM):
+        if operation in (Transaction.CREATE, Transaction.GENESIS,Transaction.CONTRACT,Transaction.INTERIM):
             # NOTE: In the case of a `CREATE` or `GENESIS` transaction, the
             #       input condition is always validate to `True`.
             input_cond_valid = True
@@ -1360,8 +1401,8 @@ class Transaction(object):
         # if self.operation in (self.__class__.GENESIS, self.__class__.CREATE,self.__class__.CONTRACT):
         asset = self.asset.to_dict()
         # else:
-        # NOTE: An `asset` in a `TRANSFER` only contains the asset's id
-        # asset = {'id': self.asset.data_id}
+            # NOTE: An `asset` in a `TRANSFER` only contains the asset's id
+            # asset = {'id': self.asset.data_id}
 
         tx_body = {
             'fulfillments': [fulfillment.to_dict(fid) for fid, fulfillment
@@ -1377,11 +1418,12 @@ class Transaction(object):
         }
         tx = {
             'version': self.version,
+            'chaintype': self.chainType,
             'transaction': tx_body,
         }
 
         txtmp = deepcopy(tx)
-        if txtmp["version"] == 2:
+        if txtmp["version"]==2:
             txtmp['transaction']['Relation']['Votes'] = None
             txtmp['transaction']['Contract']['ContractHead'] = None
             txtmp['transaction']['timestamp'] = ""
@@ -1459,7 +1501,7 @@ class Transaction(object):
             proposed_tx_id = tx_body.pop('id')
         except KeyError:
             raise InvalidHash()
-        if tx_body["version"] == 2:
+        if tx_body["version"]==2:
             tx_body['transaction']['Relation']['Votes'] = None
             tx_body['transaction']['Contract']['ContractHead'] = None
             tx_body['transaction']['timestamp'] = ""
@@ -1492,10 +1534,13 @@ class Transaction(object):
                 Contract = None
                 timestamp = tx['timestamp']
             # print("3")
+            chainType = ""
+            if 'chaintype' in tx_body_old.keys():
+                chainType = tx_body_old['chaintype']
+
             fulfillments = [Fulfillment.from_dict(fulfillment) for fulfillment
                             in tx['fulfillments']]
             conditions = [Condition.from_dict(condition) for condition
                           in tx['conditions']]
-            return cls(tx['operation'], asset=asset, fulfillments=fulfillments, conditions=conditions,
-                       metadata=metadata,
-                       timestamp=timestamp, version=tx_body['version'], Relation=Relation, Contract=Contract)
+            return cls(tx['operation'], asset=asset, fulfillments=fulfillments, conditions=conditions, metadata=metadata,
+                       timestamp=timestamp, version=tx_body['version'],Relation=Relation,Contract=Contract,chainType =chainType)

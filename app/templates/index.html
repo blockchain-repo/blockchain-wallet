@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Unichain Account</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta property="wb:webmaster" content="c4ab662a33d31e99">
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="static/application.min.css">
+
+    <script async="" src="static/analytics.js"></script>
+    <!-- icons -->
+    <link rel="icon" href="http://kuro1.xin/image/favicon.ico">
+
+</head>
+<body class="zh-CN">
+
+<!-- global nav -->
+<header class="navbar navbar-static-top global-nav" role="banner">
+    <div class="container">
+        <div class="navbar-header">
+            <!-- <a href="/" class="navbar-brand text-logo" style="background:url(/assets/css/img/logo_2x.png) no-repeat center;background-size:64px;">Bitfoo</a> -->
+            <a href="/index" class="img-logo"><img src="static/logo_2x.png"
+                                                   alt="logo"></a>
+            <span id="sub_title" class="navbar-sub-title"></span>
+        </div><!-- /.navbar-header -->
+        <nav id="main-nav" class="navigation" role="navigation">
+
+
+            <div class="navbar-right dropdown">
+                <a href="/index" class="btn btn-sm btn-dcn btn-dcn-default top-login-btn"
+                   data-toggle="dropdown">412681778@qq.com<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/index">我的钱包</a></li>
+                    <li><a href="/index">转账</a></li>
+                    <li><a href="/index">充值</a></li>
+                    <li><a href="/index">交易记录</a></li>
+                    <li><a href="/index">联系人</a></li>
+                    <li><a href="/index">帐号设置</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/index">理财</a></li>
+                    <li><a href="/index">币券</a></li>
+                    <li class="divider"></li>
+                    <li><a href="/index">退出</a></li>
+                </ul>
+            </div>
+
+            <button type="button" class="navbar-toggle btn btn-sm btn-dcn btn-dcn-default" data-toggle="collapse"
+                    data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li data-pjax-main="" class="active"><a href="/index">首页</a></li>
+                    <li><a data-pjax-main="" href="/index">币券</a></li>
+                    <li><a data-pjax-main="" href="/index">特性</a></li>
+                    <li><a data-pjax-main="" href="/index">帮助</a></li>
+                </ul>
+            </div>
+            <!--
+                  <ul class="nav navbar-nav navbar-right">
+              <li data-pjax-main class="active"><a href="/">首页</a></li>
+              <li><a data-pjax-main href="/redemption/">币券</a></li>
+              <li><a data-pjax-main href="/features/">特性</a></li>
+              <li><a data-pjax-main href="/help/">帮助</a></li>
+      
+            </ul> -->
+        </nav><!-- /.navigation -->
+    </div>
+</header>
+
+<!-- main -->
+<div id="static_top_alert" class="static-top-alert"></div>
+<main class="main" role="main" id="pjax-container">
+
+    <div class="container doc">
+        <div class="row">
+
+            <div class="col-sm-3 wallet-sidebar">
+                <div id="side-nav" class="main-menu pjax-menu">
+                    <div class="user-panel">
+                        <div class="user-image">
+                            <a href="/index"><img
+                                    src="static/bf50252b334704e14ce2e47a93b7705f"
+                                    alt="412681778@qq.com"></a>
+                        </div>
+                        <div class="user-name">412681778@qq.com</div>
+                    </div>
+                    <nav class="menu">
+                        <div class="menu-header">我的钱包</div>
+                        <ul class="nav nav-stacked">
+                            <li><a href="/index">转账</a></li>
+                            <li><a href="/index">充值</a></li>
+                            <li>
+                                <a href="/index">
+                                    交易记录 </a>
+                            </li>
+                            <li><a href="/index">联系人</a></li>
+                            <li><a href="/index">BCC</a></li>
+                            <li><a href="/index">帐号设置</a></li>
+                        </ul>
+                    </nav>
+                    <nav class="menu">
+                        <div class="menu-header">其他服务</div>
+                        <ul class="nav nav-stacked">
+                            <li>
+                                <a href="/index">
+                                    理财 <sup class="bubble"></sup>
+                                </a>
+                            </li>
+                            <li><a href="/index">币券</a></li>
+                            <!-- <li><a href="/donation/">捐赠按钮</a></li> -->
+                            <li><a href="/index">商家集成</a></li>
+                            <li><a href="/index">应用开发</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="panel newbie-questions">
+                    <div class="panel-heading">新手任务</div>
+                    <div class="panel-body">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0"
+                                 aria-valuemax="100" style="width: 33%;">
+                                <span class="sr-only">33% Complete</span>
+                            </div>
+                        </div>
+                        <ul class="list-stacked list-checked">
+                            <li class="checked"><a href="/index">绑定邮箱</a></li>
+                            <li><a href="/index">绑定手机</a></li>
+                            <li class="checked"><a href="/index">绑定二次认证</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div id="pjax-side-container" class="col-sm-9 wallet-main">
+                <section class="balance-board">
+                    <div class="balance-board-title">余额</div>
+                    <div class="balance-status">
+                        {% if balance %}
+                        <span class="btc"><strong>UNC</strong> {{balance}}<small>.00000000</small></span>
+                        <em>
+                            <span class="to">≈</span>
+                            <span class="local-currency"><strong>RMB</strong> {{balance}}<small>.00</small></span>
+                        </em>
+                        {% else %}
+                        <span class="btc"><strong>UNC</strong> 0<small>.00000000</small></span>
+                        <em>
+                            <span class="to">≈</span>
+                            <span class="local-currency"><strong>RMB</strong> 0<small>.00</small></span>
+                        </em>
+                        {% endif %}
+                    </div>
+                    <div class="balance-actions btn-toolbar" role="toolbar">
+                        <a href="/index" class="btn btn-lg btn-dcn btn-dcn-danger">转账</a>
+                        <a href="/index" class="btn btn-lg btn-dcn btn-dcn-primary">充值</a>
+                    </div>
+                </section>
+                <section class="notif">
+                    <div class="alert alert-dcn alert-dcn-warning">
+                        <h2>感谢使用！</h2>
+                        <p>
+                            为保障您的帐号安全，请 <a href="/index" class="text-highlight">绑定手机</a>
+                            <a href="/index" class="text-highlight">绑定二次认证</a> 。
+                        </p>
+                    </div>
+                </section>
+                <div id="alert_messages"></div>
+                <div class="alert alert-warning alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    {% if config %}
+                    <a target="_blank" class="btn btn-warning">{{config.keypair.private}}
+                    </a><br>
+                    <a style="margin-top:5px;" target="_blank" class="btn btn-warning">{{config.keypair.public}}
+                    </a>
+                    {% endif %}
+                </div>
+
+                <section>
+                    <div class="section-header">
+                        <h2>交易记录</h2>
+                    </div>
+                    <div class="section-body">
+                        <div class="transactions-summary clearfix">
+                            <div class="pull-right btn-toolbar">
+                                <div class="btn-group btn-group-sm">
+                                    <a href="/index"
+                                       class="btn btn-dcn btn-dcn-default dropdown-toggle" data-toggle="dropdown">导出
+                                        <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <li><a href="/index">CSV</a></li>
+                                        <li><a target="_blank" href="/index">TXT</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped table-transactions">
+                            </table>
+                            <div class="well well-empty">
+                                <p class="empty-message">暂无交易记录</p>
+                                <p class="empty-actions">
+                                    <a href="/index">需要帮助</a> 或 <a
+                                        href="/index">查阅上手指南</a>。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div> <!-- end of pjax-side-container -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container doc -->
+    <script type="text/javascript">g_js_controller = "transactions";</script>
+</main>
+<!-- /main -->
+
+<!-- footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-5 col-sm-12 footer-copyright">
+                <p>© 2017-2017 KURO1</p>
+                <div>
+
+                    <div class="footer-links-inline">
+            <span class="dropdown">
+             <a href="/index" data-toggle="dropdown" role="menu"><img
+                     src="static/zh-CN.png" class="country-flag"> 简体中文
+                 <!-- <span class="caret"></span>  --></a>
+             <ul class="dropdown-menu lang-switch-menu">
+                              <li class="active"><a data-lang-switch="zh-CN" href="/index"><img
+                                      src="static/zh-CN.png" class="country-flag"> 简体中文</a></li>
+                              <li><a data-lang-switch="en" href="/index"><img
+                                      src="static/en.png" class="country-flag"> English</a></li>
+                           </ul>
+            </span>
+                        <!-- <a data-pjax-main href="/about/legal/">法律声明</a>
+                        --><a data-pjax-main="" href="/index">服务协议</a>
+                        <a data-pjax-main="" href="/index">隐私权政策</a>
+                    </div>
+
+                </div>
+                <div class="price-stats">
+                    <span class="text-success"><i class="icon-dcn-f-bitcoin"></i> 28968</span> CNY = 1 BTC
+                </div>
+            </div>
+            <div class="col-sm-2 col-xs-4">
+                <div class="footer-links">
+                    <h4 class="title">关于我们</h4>
+                    <ul class="list-unstyled">
+                        <li><a data-pjax-main="" href="/index">公司简介</a></li>
+                        <li><a data-pjax-main="" href="/index">联系我们</a></li>
+                        <li><a data-pjax-main="" href="/index">加入我们</a></li>
+                        <li><a data-pjax-main="" href="/index">媒体报道</a></li>
+                        <li><a href="/index" target="_blank">博客</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-2 col-xs-4">
+                <div class="footer-links">
+                    <h4 class="title">用户支持</h4>
+                    <ul class="list-unstyled">
+                        <li><a data-pjax-main="" href="/index">帮助</a></li>
+                        <li><a data-pjax-main="" href="/index">安全系统</a></li>
+                        <li><a href="/index" target="_blank">开发者文档</a></li>
+                        <li><a href="/index">100%准备金证明</a></li>
+                        <li><a href="/index">节点状态</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-sm-2 col-xs-4">
+                <div class="footer-links footer-links-social">
+                    <h4 class="title">关注我们</h4>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="javascript:;" class="qr-button wechat"><i class="icon-dcn-f-comments"></i> 微信
+                                <div class="popover top">
+                                    <div class="arrow"></div>
+                                    <div class="popover-content">
+                                        <img src="static/wechat_qr.jpg" width="120px" height="120px">
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li><a target="_blank" href="/index"><i class="icon-dcn-f-weibo"></i> 新浪微博</a>
+                        </li>
+                        <!-- <li><a href=""><i class="icon-dcn-f-twitter"></i> Twitter</a></li>
+                        <li><a href=""><i class="icon-dcn-f-facebook"></i> Facebook</a></li> -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- /footer -->
+
+<!-- modals -->
+<div class="modal fade modal-login">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4>登录</h4>
+                <div class="pull-right">或 <a href="/index">注册</a></div>
+            </div>
+            <div class="modal-body">
+                <form id="md_login">
+                    <div class="form-group">
+                        <label class="control-label" for="md_id">邮箱或手机号码</label>
+                        <input id="md_id" type="text" class="form-control input-lg input-dcn">
+                        <div class="help-block hide">
+                            请输入正确的邮箱地址或手机号码
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="md_password">密码</label>
+                        <input id="md_password" type="password" class="form-control input-lg input-dcn">
+                        <div class="help-block hide">
+                            8~50位、必须含数字及字母
+                        </div>
+                        <div class="help-block err11002 hide">
+                            邮箱/手机与密码不匹配
+                        </div>
+                        <div class="help-block err90004 hide">
+                            尝试过于频繁，请稍候再试
+                        </div>
+                        <div class="help-block err90004 err11003 hide">
+                            尝试过于频繁，请10分钟之后再试
+                        </div>
+                    </div>
+                    <div class="form-group two-step fade hide">
+                        <label class="control-label" for="md_twostep">Google Authenticator 二次验证</label><a
+                            target="_blank" href="/index" class="pull-right"> 无法验证？</a>
+                        <input id="md_twostep" type="text" class="form-control input-lg input-dcn" placeholder="6位数字"
+                               maxlength="6" autocomplete="off">
+                        <div class="help-block err90017 hide">
+                            二次验证码错误，如果多次失败，请校对手机时间，当前时间: <span class="now"></span>
+                        </div>
+                        <div class="help-block err90020 hide">
+                            30秒内尝试错误次数超过3次，请30秒后再次尝试
+                        </div>
+                        <div class="help-block err90019 hide">
+                            此验证码已被使用，请重试新的验证码
+                        </div>
+                    </div>
+                    <div class="form-group form-action">
+                        <button type="submit" class="btn btn-lg btn-dcn btn-dcn-primary">登录</button>
+                        <a href="/index" class="pull-right">忘记密码？</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-two-step">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4>二次验证</h4>
+                <span class="text-muted">您可以在安全设置中取消 “登录时需要 Google Authenticator 二次验证”</span>
+            </div>
+            <div class="modal-body">
+                <form id="md_two_step">
+                    <input id="ts_id" type="hidden" value="">
+                    <input id="ts_password" type="password" value="" style="display:none">
+                    <div class="form-group two-step">
+                        <label class="control-label" for="ts_twostep">Google Authenticator 二次验证
+                            <!--  <span class="text-muted">如果已绑定</span> --></label>
+                        <input id="ts_twostep" type="text" class="form-control input-lg input-dcn" placeholder="6位数字"
+                               maxlength="6" autocomplete="off">
+                        <div class="help-block err90017 hide">
+                            二次验证码错误，如果多次失败，请校对手机时间，当前时间: <span class="now"></span>
+                        </div>
+                        <div class="help-block err90020 hide">
+                            30秒内尝试错误次数超过3次，请30秒后再次尝试
+                        </div>
+                        <div class="help-block err90019 hide">
+                            此验证码已被使用，请重试新的验证码
+                        </div>
+                    </div>
+                    <div class="form-group form-action">
+                        <button type="submit" class="btn btn-lg btn-dcn btn-dcn-primary">验证</button>
+                        <a target="_blank" href="/index" class="pull-right">无法验证？</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-sensitive">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4>安全提示: </h4>
+            </div>
+            <div class="modal-body">
+                <p>请注意不要在公共场所使用该功能，防止币券兑换码丢失，造成不必要的损失。</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dcn btn-dcn-default" data-dismiss="modal">取消</button>
+                <a href="/index" class="btn btn-dcn btn-dcn-primary"
+                   data-sensitive-confirm="">确定</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /modals -->
+
+<!-- JS Templates -->
+<script type="text/template" id="alert_template">
+    <div class="alert alert-dcn alert-dcn-<%= style %>">
+        <% if(closebtn){ %>
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <% } %>
+        <% if(show_time){ %>
+        <time class="pull-right" datetime="<%= time %>"><%= time %></time>
+        <% } %>
+        <% if(show_title){ %>
+        <h2><%= title %></h2>
+        <% } %>
+        <% if(show_message){ %>
+        <p><%= message %></p>
+        <% } %>
+        <% if(show_action){ %>
+        <div class="alert-actions">
+            <p>
+                <%= link %>
+            </p>
+        </div>
+        <% } %>
+    </div>
+</script>
+
+<script type="text/template" id="alert_template_top">
+    <section>
+        <div class="alert alert-dcn-<%= style %> alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <strong><%= title %></strong>
+            <%= message %>
+        </div>
+    </section>
+
+</script>
+
+<script type="text/template" id="new_address_template">
+    <tr>
+        <td>
+            <code class="address label-editable" data-placeholder="标记这个地址" data-address="<%= btc_address %>"
+                  data-label="<%= label %>"><%= btc_address %></code>
+            <a class="editable-btn hide"><i class="icon-dcn-f-pencil"></i></a>
+        </td>
+        <td>
+            <a href="" class="qr-button"><i class="icon-dcn-f-qrcode"></i></a>
+        </td>
+        <td>
+            <div class="btn-group">
+                <a href="transactions.html" class="btn btn-xs btn-dcn btn-dcn-default">收款记录</a>
+                <button type="button" class="btn btn-xs btn-dcn btn-dcn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a class="contact-del" href="" data-address="<%= btc_address %>">隐藏地址</a></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+</script>
+
+<script type="text/template" id="new_contact_template">
+
+    <tr>
+        <td>
+            <span class="label-editable text-editable"><%= label %></span>
+        </td>
+        <td>
+            <%= contact_address %>
+        </td>
+        <td>
+            <div class="btn-group">
+                <a href="transactions.html" class="btn btn-xs btn-dcn btn-dcn-default">交易记录</a>
+                <button type="button" class="btn btn-xs btn-dcn btn-dcn-default dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="/send?to=<%= contact_address %>">转账</a></li>
+                    <li class="divider"></li>
+                    <li><a class="contact-del" href="">删除</a></li>
+                </ul>
+            </div>
+        </td>
+    </tr>
+
+</script>
+
+<script type="text/template" id="pay_btn_html_template">
+
+    <a target="_blank" href="<%= site_host %>/pay?product_hash_id=<%= product_hash_id %>"><img height=32
+                                                                                               src="<%= site_host + '/css/img/' + btn_img_src %>"></a>
+
+</script>
+
+<script type="text/template" id="new_discount_template">
+
+    <tr class="quantity-discount">
+        <td class="text-center"><span class="symbol"><%= symbol %></span> <span class="quantity"><%= quantity %></span>
+        </td>
+        <td class="text-center"><span class="discount"><%= discount %></span>折</td>
+        <td class="text-center del"><a href="">删除</a></td>
+    </tr>
+
+</script>
+
+<!-- JS Templates end-->
+<script type="text/javascript" src="static/application.min.js"></script>
+</body>
+</html>

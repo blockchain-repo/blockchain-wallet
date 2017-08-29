@@ -8,14 +8,20 @@ from flask import jsonify, render_template
 
 
 @app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
+def index():
+    balance = 5000 + 1
+    return render_template('index.html', config=c.config,balance=balance)
+
+
+@app.route('/base', methods=['GET', 'POST'])
 def base():
     balance = 0
-    # host_ip = c.config['server']['host']
-    # host_port = c.config['server']['port']
-    # utxo = json.loads(UTXO(account['public'], host_ip, host_port))
-    # for i in utxo['data']:
-    #     balance += i['amount']
-
+    host_ip = c.config['server']['host']
+    host_port = c.config['server']['port']
+    utxo = json.loads(UTXO(c.config['keypair']['public'], host_ip, host_port))
+    for i in utxo['data']:
+        balance += i['amount']
     return render_template('base.html', config=c.config, balance=balance)
 
 #

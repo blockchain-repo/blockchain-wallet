@@ -89,3 +89,4 @@ ENV/
 .ropeproject
 .account
 .config
+.idea

@@ -81,6 +81,7 @@ class AssetIdMismatch(Exception):
 class AmountError(Exception):
     """Raised when the amount of a non-divisible asset is different then 1"""
 
+
 class MutilContractOwner(Exception):
     """Raised when the contract has mutil-owner-singatures"""
 

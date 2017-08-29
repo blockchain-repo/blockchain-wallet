@@ -1,9 +1,10 @@
-from flask import Flask,redirect,request,render_template,url_for,jsonify
+from flask import Flask, redirect, request, render_template, url_for, jsonify
 import os
 import sys
 import json
+
 parentdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0,parentdir)
+sys.path.insert(0, parentdir)
 
 from create_config import create_config
 from create_account import create_account
@@ -12,6 +13,7 @@ from merge_utxo import merge_utxo
 from tx_record import tx_record
 from create_asset_tx import create_asset_tx
 from transfer_asset_tx import transfer_asset_tx
+
 # Flask通过Python的装饰器在内部自动地把URL和函数给关联起来
 # Flask自带在端口8081上监听
 # 首页地址 http://localhost:8081/
@@ -19,6 +21,7 @@ from transfer_asset_tx import transfer_asset_tx
 
 
 app = Flask(__name__)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
@@ -36,12 +39,13 @@ def home():
             config = json.load(fp)
             host_ip = config['host_ip']
             host_port = config['host_port']
-            utxo = json.loads(UTXO(verifying_key,host_ip,host_port))
+            utxo = json.loads(UTXO(verifying_key, host_ip, host_port))
             for i in utxo['data']:
                 balance += i['amount']
     except:
         pass
-    return render_template('home.html',host_conf = config,account = account,balance = balance)
+    return render_template('home.html', host_conf=config, account=account, balance=balance)
+
 
 @app.route('/config', methods=['GET'])
 def config_form():
@@ -56,9 +60,10 @@ def config_form():
 def config():
     # 需要从request对象读取表单内容
     if request.form['host_ip'] and request.form['host_port']:
-        create_config(request.form['host_ip'],request.form['host_port'])
+        create_config(request.form['host_ip'], request.form['host_port'])
         return redirect(url_for('home'))
     return '<h3>Please input host ip,port</h3>'
+
 
 @app.route('/account', methods=['GET'])
 def account_form():
@@ -72,7 +77,7 @@ def account_form():
 @app.route('/account', methods=['POST'])
 def account():
     # 需要从request对象读取表单内容
-    if request.form['username'] :
+    if request.form['username']:
         create_account(request.form['username'])
         return redirect(url_for('home'))
     return '<h3>Please input your username</h3>'
@@ -89,13 +94,14 @@ def account_utxo():
             config = json.load(fp)
             host_ip = config['host_ip']
             host_port = config['host_port']
-            utxo = json.loads(UTXO(verifying_key,host_ip,host_port))
+            utxo = json.loads(UTXO(verifying_key, host_ip, host_port))
             print(utxo)
             for u in utxo['data']:
                 u.pop('details')
-            return jsonify(result = utxo)
+            return jsonify(result=utxo)
     except:
-        return jsonify({'error':'500'})
+        return jsonify({'error': '500'})
+
 
 @app.route('/merge', methods=['GET'])
 def merge():
@@ -110,10 +116,11 @@ def merge():
             config = json.load(fp)
             host_ip = config['host_ip']
             host_port = config['host_port']
-            merge = merge_utxo(verifying_key,signing_key,host_ip,host_port)
-            return jsonify(result = merge)
+            merge = merge_utxo(verifying_key, signing_key, host_ip, host_port)
+            return jsonify(result=merge)
     except:
-        return jsonify({'error':'500'})
+        return jsonify({'error': '500'})
+
 
 @app.route('/record', methods=['GET'])
 def record():
@@ -126,10 +133,11 @@ def record():
             config = json.load(fp)
             host_ip = config['host_ip']
             host_port = config['host_port']
-            record = json.loads(tx_record(verifying_key,host_ip,host_port))
-            return jsonify(result = record)
+            record = json.loads(tx_record(verifying_key, host_ip, host_port))
+            return jsonify(result=record)
     except:
-        return jsonify({'error':'500'})
+        return jsonify({'error': '500'})
+
 
 @app.route('/create', methods=['GET'])
 def create_form():
@@ -138,6 +146,7 @@ def create_form():
                 <p><input name="amount"></p>
                 <p><button type="submit">create</button></p>
                 </form>'''
+
 
 @app.route('/create', methods=['POST'])
 def create():
@@ -153,10 +162,11 @@ def create():
                 config = json.load(fp)
                 host_ip = config['host_ip']
                 host_port = config['host_port']
-                create = create_asset_tx(verifying_key,signing_key,int(request.form['amount']),host_ip,host_port)
-            return jsonify(result = create)
+                create = create_asset_tx(verifying_key, signing_key, int(request.form['amount']), host_ip, host_port)
+            return jsonify(result=create)
         except:
-            return jsonify({'error':'500'})
+            return jsonify({'error': '500'})
+
 
 @app.route('/transfer', methods=['GET'])
 def transfer_form():
@@ -165,6 +175,7 @@ def transfer_form():
                 <p>Amount      :<input name="amount"></p>
                 <p><button type="submit">transfer</button></p>
                 </form>'''
+
 
 @app.route('/transfer', methods=['POST'])
 def transfer():
@@ -180,13 +191,13 @@ def transfer():
                 config = json.load(fp)
                 host_ip = config['host_ip']
                 host_port = config['host_port']
-                transfer = transfer_asset_tx(verifying_key,signing_key,request.form['after'],int(request.form['amount']),host_ip,host_port)
-            return jsonify(result = transfer)
+                transfer = transfer_asset_tx(verifying_key, signing_key, request.form['after'],
+                                             int(request.form['amount']), host_ip, host_port)
+            return jsonify(result=transfer)
         except:
-            return jsonify({'error':'500'})
+            return jsonify({'error': '500'})
 
 
 if __name__ == '__main__':
     app.debug = True
     app.run(host='0.0.0.0', port=8081)
-

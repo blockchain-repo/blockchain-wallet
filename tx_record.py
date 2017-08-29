@@ -7,19 +7,21 @@ import requests
 
 
 def time_stamp(timeNum):
-    timeStamp = float(timeNum)/1000
+    timeStamp = float(timeNum) / 1000
     timeArray = time.localtime(timeStamp)
     tm = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
-    return(tm)
+    return (tm)
 
-def tx_record(verifying_key,host_ip,host_port):
+
+def tx_record(verifying_key, host_ip, host_port):
     # TODO:URL
-    #url='http://127.0.0.1:9984/uniledger/v1/transaction/getTxRecord?public_key={}'.format('Gvexu49oskc6ptYwzqP9q8sL9jLxjNZNMBWgVVhUtPmD')
-    url='http://{}:{}/uniledger/v1/transaction/getTxRecord?public_key={}'.format(host_ip,host_port,verifying_key)
-    r=requests.get(url)
-    return(r.text)
+    # url='http://127.0.0.1:9984/uniledger/v1/transaction/getTxRecord?public_key={}'.format('Gvexu49oskc6ptYwzqP9q8sL9jLxjNZNMBWgVVhUtPmD')
+    url = 'http://{}:{}/uniledger/v1/transaction/getTxRecord?public_key={}'.format(host_ip, host_port, verifying_key)
+    r = requests.get(url)
+    return (r.text)
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     account = {}
     with open('.account') as fp:
         account = json.load(fp)
@@ -37,9 +39,8 @@ if __name__=='__main__':
     except ValueError:
         exit('need .config')
 
-
-    txs = json.loads(tx_record(verifying_key,host_ip,host_port))
+    txs = json.loads(tx_record(verifying_key, host_ip, host_port))
     for t in txs:
         t['timestamp'] = time_stamp(t['timestamp'])
         t.pop('id')
-    print(json.dumps(txs,indent=4))
+    print(json.dumps(txs, indent=4))

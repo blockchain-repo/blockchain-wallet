@@ -6,26 +6,27 @@ import requests
 import sys
 from common.transaction import Transaction, Asset
 
-def create_asset_tx(verifying_key,signing_key,amount,host_ip,host_port):
-    #print(verifying_key,signing_key,amount)
+
+def create_asset_tx(verifying_key, signing_key, amount, host_ip, host_port):
+    # print(verifying_key,signing_key,amount)
     # Digital Asset Definition (e.g. RMB)
-    asset = Asset(data={'money':'RMB'},data_id='20170628150000',divisible=True)
+    asset = Asset(data={'money': 'RMB'}, data_id='20170628150000', divisible=True)
     # Metadata Definition
     metadata = {'planet': 'earth'}
     # create trnsaction  TODO : amount
-    tx = Transaction.create([verifying_key], [([verifying_key],amount)], metadata = metadata, asset = asset)
+    tx = Transaction.create([verifying_key], [([verifying_key], amount)], metadata=metadata, asset=asset)
     # sign with private key
     tx = tx.sign([signing_key])
     tx_id = tx.to_dict()['id']
 
-
-    url='http://{}:{}/uniledger/v1/transaction/createOrTransferTx'.format(host_ip,host_port)
+    url = 'http://{}:{}/uniledger/v1/transaction/createOrTransferTx'.format(host_ip, host_port)
     headers = {'content-type': 'application/json'}
     value = json.dumps(tx.to_dict())
     r = requests.post(url, data=value, headers=headers)
-    return(r.json())
+    return (r.json())
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     account = {}
     with open('.account') as fp:
         account = json.load(fp)
@@ -45,7 +46,7 @@ if __name__=='__main__':
     except ValueError:
         exit('need .config')
 
-    if not len(sys.argv)==2:
+    if not len(sys.argv) == 2:
         print("Please provide one parameter of amount(int)!")
         sys.exit()
     amount = sys.argv[1]
@@ -54,4 +55,4 @@ if __name__=='__main__':
         amount = int(amount)
     except ValueError:
         exit('`amount` must be an int')
-    print(json.dumps(create_asset_tx(verifying_key,signing_key,amount,host_ip,host_port),indent=4))
+    print(json.dumps(create_asset_tx(verifying_key, signing_key, amount, host_ip, host_port), indent=4))

@@ -7,48 +7,50 @@ import sys
 from account_utxo_balance import UTXO
 from common.transaction import Transaction, Asset, Fulfillment, Condition
 
-def merge_utxo(verifying_key,signing_key,host_ip,host_port):
-    #print(verifying_key,signing_key,amount)
+
+def merge_utxo(verifying_key, signing_key, host_ip, host_port):
+    # print(verifying_key,signing_key,amount)
     # Digital Asset Definition (e.g. RMB)
-    asset = Asset(data={'money':'RMB'},data_id='1',divisible=True)
+    asset = Asset(data={'money': 'RMB'}, data_id='1', divisible=True)
     # Metadata Definition
     metadata = {'planet': 'earth'}
 
     inputs = []
     balance = 0
-    utxo = UTXO(verifying_key,host_ip,host_port)
+    utxo = UTXO(verifying_key, host_ip, host_port)
     utxo = json.loads(utxo)
     length = len(utxo)
     for i in utxo:
         f = Fulfillment.from_dict({
-            'fulfillment':i['details'] ,
+            'fulfillment': i['details'],
             'input': {
                 'cid': i['cid'],
                 'txid': i['txid'],
-             },
-             'owners_before': [verifying_key],
+            },
+            'owners_before': [verifying_key],
         })
         inputs.append(f)
         balance += i['amount']
 
     # create trnsaction
     if balance <= 0:
-        return('No need to merge, because of lack of balance')
+        return ('No need to merge, because of lack of balance')
     elif length <= 1:
-        return('No need to merge, because of a small amount of utxo')
+        return ('No need to merge, because of a small amount of utxo')
     else:
-        tx = Transaction.transfer(inputs, [([verifying_key],balance)], asset)
+        tx = Transaction.transfer(inputs, [([verifying_key], balance)], asset)
     # sign with private key
     tx = tx.sign([signing_key])
     tx_id = tx.to_dict()['id']
 
-    url='http://{}:{}/uniledger/v1/transaction/createOrTransferTx'.format(host_ip,host_port)
+    url = 'http://{}:{}/uniledger/v1/transaction/createOrTransferTx'.format(host_ip, host_port)
     headers = {'content-type': 'application/json'}
     value = json.dumps(tx.to_dict())
     r = requests.post(url, data=value, headers=headers)
-    return(r.json())
+    return (r.json())
 
-if __name__=='__main__':
+
+if __name__ == '__main__':
     account = {}
     with open('.account') as fp:
         account = json.load(fp)
@@ -68,8 +70,8 @@ if __name__=='__main__':
     except ValueError:
         exit('need .config')
 
-    #TODO : validate
-    if not len(sys.argv)==1:
+    # TODO : validate
+    if not len(sys.argv) == 1:
         print("Please provide two parameters for owner_after(key) and amount(int)!")
         sys.exit()
-    print(json.dumps(merge_utxo(verifying_key,signing_key,host_ip,host_port),indent=4))
+    print(json.dumps(merge_utxo(verifying_key, signing_key, host_ip, host_port), indent=4))

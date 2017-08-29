@@ -13,6 +13,7 @@ def gen_timestamp():
     # return str(round(time.time()))
     return str(round(time.time() * 1000))
 
+
 def serialize(data):
     """Serialize a dict into a JSON formatted string.
 

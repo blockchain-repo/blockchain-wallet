@@ -4,12 +4,15 @@
 import json
 import requests
 
-def UTXO(verifying_key,host_ip,host_port):
-    url = 'http://{}:{}/uniledger/v1/condition/getUnspentTxs?unspent=true&public_key={}'.format(host_ip,host_port,verifying_key)
-    r = requests.get(url)
-    return(r.text)
 
-if __name__=='__main__':
+def UTXO(verifying_key, host_ip, host_port):
+    url = 'http://{}:{}/uniledger/v1/condition/getUnspentTxs?unspent=true&public_key={}'.format(host_ip, host_port,
+                                                                                                verifying_key)
+    r = requests.get(url)
+    return (r.text)
+
+
+if __name__ == '__main__':
     account = {}
     with open('.account') as fp:
         account = json.load(fp)
@@ -26,10 +29,10 @@ if __name__=='__main__':
     except ValueError:
         exit('need .config')
 
-    utxo = json.loads(UTXO(verifying_key,host_ip,host_port))["data"]
+    utxo = json.loads(UTXO(verifying_key, host_ip, host_port))["data"]
     # utxo = json.dumps(utxo)
     # print(utxo)
     for u in utxo:
         # print(u)
         u.pop('details')
-    print(json.dumps(utxo,indent=4))
+    print(json.dumps(utxo, indent=4))

@@ -90,3 +90,4 @@ ENV/
 .account
 .config
 .idea
+.unichain-account

@@ -2,9 +2,11 @@
 
 """
 import json
-import requests
 import sys
-from common.transaction import Transaction, Asset
+
+import requests
+
+from app.models.common.transaction import Transaction, Asset
 
 
 def create_asset_tx(verifying_key, signing_key, amount, host_ip, host_port):

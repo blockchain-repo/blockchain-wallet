@@ -24,20 +24,7 @@ def generate_keypair():
         *(k.decode() for k in crypto.ed25519_generate_key_pair()))
 
 
-def create_account(username):
-    keypair = generate_keypair()
 
-    account = {
-        'verifying_key': keypair.verifying_key,
-        'signing_key': keypair.signing_key,
-        'username': username
-    }
-
-    f = open('.account', 'w')
-    json_account = json.dumps(account)
-    f.write(json_account)
-    f.close()
-    return (account)
 
 
 if __name__ == '__main__':

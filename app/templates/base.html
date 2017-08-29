@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Unichain-Account</title>
@@ -31,49 +30,42 @@
         }  
         .attribute dl > dd .serial-num {  
         margin-left: 40px;  
-        }  
-    </style>  
+        }
+    </style>
 </head>
 
 <h1>Unichain Account</h1>
 
 <body>
-{% if host_conf %}
+{% if config %}
 <div class="attribute">
     <dl>
-        <dt>Host ip &nbsp&nbsp: </dt>
-        <dd>{{host_conf.host_ip}}</dd>
+        <dt>Host ip &nbsp&nbsp:</dt>
+        <dd>{{config.server.host}}</dd>
     </dl>
     <dl>
-        <dt>Host port : </dt>
-        <dd>{{host_conf.host_port}}</dd>
+        <dt>Host port :</dt>
+        <dd>{{config.server.port}}</dd>
     </dl>
 </div>
-{% else %}
-    <a href="/config">create config</a>
-{% endif %}
-
-{% if account %}
-<div class="attribute">  
-    <dl>  
-        <dt>User name &nbsp&nbsp&nbsp: </dt>  
-        <dd>{{account.username}}</dd>  
-    </dl>  
-    <dl>  
-        <dt>Publick key &nbsp: </dt>  
-        <dd>{{account.verifying_key}}</dd>  
-    </dl>  
-    <dl>  
-        <dt>Private key &nbsp: </dt>  
-        <dd>{{account.signing_key}}</dd>  
+<div class="attribute">
+    <dl>
+        <dt>User name &nbsp&nbsp&nbsp:</dt>
+        <dd>{{config.username}}</dd>
     </dl>
     <dl>
-        <dt>UTXO balance : </dt>
+        <dt>Public key &nbsp:</dt>
+        <dd>{{config.keypair.public}}</dd>
+    </dl>
+    <dl>
+        <dt>Private key &nbsp:</dt>
+        <dd>{{config.keypair.private}}</dd>
+    </dl>
+    <dl>
+        <dt>UTXO balance :</dt>
         <dd>{{balance}}</dd>
     </dl>
 </div>
-{% else %}
-    <a href="/account">create account</a>
 {% endif %}
 
 <p><a href="/utxo">account utxo</a></p>

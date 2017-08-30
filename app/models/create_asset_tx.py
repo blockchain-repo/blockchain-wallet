@@ -17,7 +17,7 @@ def create_asset_tx(public, private, target, amount, metadata, private_flag, hos
     if private_flag is True:
         # TODO private
         encrypted, nonce = secretbox(private, metadata)
-        metadata = {'data': {'encrypted': encrypted, 'nonce': nonce, 'public': public}}
+        metadata = {'encrypted': encrypted, 'nonce': nonce, 'public': public}
 
     # create transaction  TODO : amount
     tx = Transaction.create([public], [([target], amount)], metadata=metadata, asset=asset)

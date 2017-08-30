@@ -40,15 +40,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group form-group-fee" style="display:none">
-                    <label class="control-label" for="tx_fee">矿工费</label>
+                <div class="form-group form-group-fee" >
+                    <label class="control-label" for="private_flag">加密留言</label>
                     <div class="control-input">
-                        <select id="tx_fee" name="tx_fee" class="form-control input-lg input-dcn" tabindex="2">
-                            <option value="0.0001">0.0001</option>
-                            <option value="0.0005">0.0005</option>
-                            <option value="0.001">0.001</option>
-                            <option value="0.005">0.005</option>
-                            <option value="0.01">0.01</option>
+                        <select id="private_flag" name="private_flag" class="form-control input-lg input-dcn" tabindex="2">
+                            <option value="true">是</option>
+                            <option value="false">否</option>
                         </select>
                         <div class="help-block err16008 hide">
                             无效的矿工费，范围0.0001 ~ 0.01BTC
@@ -62,7 +59,8 @@
                             <div class="col-sm-6 col-btc">
                                 <input id="btc_amount" name="btc_amount"
                                        class="form-control input-lg input-dcn btc-amount" placeholder="UNC"
-                                       autocomplete="off" data-btc-input="" tabindex="2" onblur="rmb_amount.value=this.value">
+                                       autocomplete="off" data-btc-input="" tabindex="2"
+                                       onblur="rmb_amount.value=this.value">
                                 <div class="help-block hide">
                                     无效的金额
                                 </div>

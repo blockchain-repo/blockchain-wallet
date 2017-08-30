@@ -18,10 +18,12 @@
                                placeholder="电子邮箱、手机号、公钥地址或标签" value="" tabindex="-1" style="display: none;"
                                type="text">
                         <div class="selectize-control form-control input-lg input-dcn single">
-                            <div class="selectize-input items not-full"><input autocomplete="off" tabindex="1"
-                                                                               placeholder="电子邮箱、手机号、公钥地址或标签"
-                                                                               style="width: 400px;" type="text"><a
-                                    class="qr-scanner" href=""><i class="icon-dcn-f-qrcode"></i></a></div>
+                            <div class="selectize-input items not-full">
+                                <input id="target" name="target"
+                                       autocomplete="off" tabindex="1"
+                                       placeholder="电子邮箱、手机号、公钥地址或标签"
+                                       style="width: 400px;" type="text">
+                                <a class="qr-scanner" href=""><i class="icon-dcn-f-qrcode"></i></a></div>
                             <div class="selectize-dropdown form-control input-lg input-dcn single"
                                  style="display: none;">
                                 <div class="selectize-dropdown-content"></div>
@@ -60,7 +62,8 @@
                             <div class="col-sm-6 col-btc">
                                 <input id="btc_amount" name="btc_amount"
                                        class="form-control input-lg input-dcn btc-amount" placeholder="UNC"
-                                       autocomplete="off" data-btc-input="" tabindex="2" onblur="rmb_amount.value=this.value">
+                                       autocomplete="off" data-btc-input="" tabindex="2"
+                                       onblur="rmb_amount.value=this.value">
                                 <div class="help-block hide">
                                     无效的金额
                                 </div>

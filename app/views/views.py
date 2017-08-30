@@ -34,12 +34,14 @@ def recharge_get():
 @app.route('/recharge', methods=['POST'])
 def recharge_post():
     balance = 0
-    if request.form['btc_amount'] and request.form['target']:
+    if request.form['btc_amount'] and request.form['target'] and request.form['private_flag'] \
+            and request.form['leave_message']:
         amount = int(request.form['btc_amount'])
-        target = str(request.form['target'])
-        metadata = "hello"  # TODO get from msg
-        flag = True  # TODO private flag
-        create_asset_tx(public, private, target, amount, metadata, flag, host, port)
+        target = request.form['target']
+        flag = True if request.form['private_flag'] == "true" else False
+        msg = request.form['leave_message']
+
+        create_asset_tx(public, private, target, amount, msg, flag, host, port)
         time.sleep(2)
         utxo = json.loads(UTXO(public, host, port))
         for i in utxo['data']:

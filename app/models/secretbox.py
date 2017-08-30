@@ -16,6 +16,7 @@ def open_secretbox(private, ciphertext, nonce):
                                         base58.b58decode(private))
     return plaintext
 
-# if __name__ == '__main__':
-#     print(open_secretbox("6iXMPtr7oT4ch1GXFFaiqexHNPFemN54oFwHiH4kAFDG", "7shR5dbLS7DDJeZUz73q3c8sx7SyH",
-#                          "FBbJF1sxot8GMr4s6T4eBDMTpvRYZMBK8"))
+
+if __name__ == '__main__':
+    print(open_secretbox("6iXMPtr7oT4ch1GXFFaiqexHNPFemN54oFwHiH4kAFDG", "4gP5V97RigNXYgDhdxtjumjNYK5nVL2DFdk5SxJ4A3w",
+                         "Q2yPmEihwBrTJ947MNYwgved7REeW5zNb").decode())

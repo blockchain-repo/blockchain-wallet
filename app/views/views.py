@@ -37,7 +37,9 @@ def recharge_post():
     if request.form['btc_amount'] and request.form['target']:
         amount = int(request.form['btc_amount'])
         target = str(request.form['target'])
-        create_asset_tx(public, private, target, amount, host, port)
+        metadata = "hello"  # TODO get from msg
+        flag = True  # TODO private flag
+        create_asset_tx(public, private, target, amount, metadata, flag, host, port)
         time.sleep(2)
         utxo = json.loads(UTXO(public, host, port))
         for i in utxo['data']:

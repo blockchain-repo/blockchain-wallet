@@ -1,20 +1,24 @@
 """A simple way to generate a `CREATE` transaction.
 
 """
-import json
 import sys
-
+import json
 import requests
 
 from app.models.common.transaction import Transaction, Asset
+from app.models.secretbox import secretbox, open_secretbox
 
 
-def create_asset_tx(public, private, target, amount, host, port):
+def create_asset_tx(public, private, target, amount, metadata, private_flag, host, port):
     # print(verifying_key,signing_key,amount)
     # Digital Asset Definition (e.g. RMB)
     asset = Asset(data={'money': 'RMB'}, data_id='20170628150000', divisible=True)
     # Metadata Definition
-    metadata = {'planet': 'earth'}
+    if private_flag is True:
+        # TODO private
+        encrypted, nonce = secretbox(private, metadata)
+        metadata = {'data': {'encrypted': encrypted, 'nonce': nonce, 'public': public}}
+
     # create transaction  TODO : amount
     tx = Transaction.create([public], [([target], amount)], metadata=metadata, asset=asset)
     # sign with private key

@@ -32,7 +32,7 @@
 
             <div class="navbar-right dropdown">
                 <a href="/index" class="btn btn-sm btn-dcn btn-dcn-default top-login-btn"
-                   data-toggle="dropdown">superadmin<span class="caret"></span></a>
+                   data-toggle="dropdown">{{config.username}}<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/index">我的钱包</a></li>
                     <li><a href="/transfer">转账</a></li>
@@ -86,9 +86,9 @@
                         <div class="user-image">
                             <a href="/index"><img
                                     src="static/bf50252b334704e14ce2e47a93b7705f"
-                                    alt="superadmin"></a>
+                                    alt="{{config.username}}"></a>
                         </div>
-                        <div class="user-name">superadmin</div>
+                        <div class="user-name">{{config.username}}</div>
                     </div>
                     <nav class="menu">
                         <div class="menu-header">我的钱包</div>
@@ -199,10 +199,10 @@
                             <table class="table table-striped table-transactions">
                             </table>
                             <div class="well well-empty">
-                                <p class="empty-message">暂无记录</p>
+                                <p class="empty-message">区块链地址 <a target="_blank" href="http://{{config.server.host}}:{{config.server.port}}/">{{config.server.host}}:{{config.server.port}}</a></p>
                                 <p class="empty-actions">
-                                    <a href="/index">需要帮助</a> 或 <a
-                                        href="/index">查阅上手指南</a>。
+                                    <a href="/index">需要帮助</a> 或
+                                    <a href="/index">查阅上手指南</a>。
                                 </p>
                             </div>
                         </div>

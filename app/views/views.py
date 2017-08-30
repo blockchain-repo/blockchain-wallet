@@ -1,41 +1,62 @@
 import json
-from flask import render_template
+
+import time
+from flask import render_template, request
 
 import config as c
 from app import app
 from app.models.account_utxo_balance import UTXO
+from app.models.create_asset_tx import create_asset_tx
 from app.models.secretbox import secretbox
 
-
-@app.route('/old', methods=['GET', 'POST'])
-def base():
-    balance = 0
-    host_ip = c.config['server']['host']
-    host_port = c.config['server']['port']
-    utxo = json.loads(UTXO(c.config['keypair']['public'], host_ip, host_port))
-    for i in utxo['data']:
-        balance += i['amount']
-    secretbox()
-    return render_template('old.html', config=c.config, balance=balance)
+public = c.config['keypair']['public']
+private = c.config['keypair']['private']
+host = c.config['server']['host']
+port = c.config['server']['port']
 
 
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-    balance = 5000 + 1
+    balance = 0
+    utxo = json.loads(UTXO(public, host, port))
+    for i in utxo['data']:
+        balance += i['amount']
     return render_template('index.html', config=c.config, balance=balance)
 
 
-@app.route('/recharge', methods=['GET', 'POST'])
-def recharge():
-    balance = 5000 + 1
+@app.route('/recharge', methods=['GET'])
+def recharge_get():
+    balance = 0
     return render_template('recharge.html', config=c.config, balance=balance)
 
 
-@app.route('/transfer', methods=['GET', 'POST'])
-def transfer():
-    balance = 5000 + 1
+@app.route('/recharge', methods=['POST'])
+def recharge_post():
+    balance = 0
+    if request.form['btc_amount'] and request.form['target']:
+        amount = int(request.form['btc_amount'])
+        target = str(request.form['target'])
+        create_asset_tx(public, private, target, amount, host, port)
+        time.sleep(2)
+        utxo = json.loads(UTXO(public, host, port))
+        for i in utxo['data']:
+            balance += i['amount']
+    return render_template('index.html', config=c.config, balance=balance)
+
+
+@app.route('/transfer', methods=['GET'])
+def transfer_get():
+    balance = 0
     return render_template('transfer.html', config=c.config, balance=balance)
+
+
+@app.route('/transfer', methods=['POST'])
+def transfer_post():
+    balance = 0
+    if request.form['btc_amount']:
+        balance -= int(request.form['btc_amount'])
+    return render_template('index.html', config=c.config, balance=balance)
 
 #
 # @app.route('/config', methods=['GET'])

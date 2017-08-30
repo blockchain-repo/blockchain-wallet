@@ -10,7 +10,7 @@
 
     <section>
         <div id="pre-send" class="col-md-8 tab-pane active fade in">
-            <form action="" method="post" class="form-horizontal">
+            <form action="/transfer" method="post" class="form-horizontal">
                 <div class="form-group">
                     <label class="control-label" for="target_address">转账至</label>
                     <div class="control-input">
@@ -20,7 +20,7 @@
                         <div class="selectize-control form-control input-lg input-dcn single">
                             <div class="selectize-input items not-full"><input autocomplete="off" tabindex="1"
                                                                                placeholder="电子邮箱、手机号、公钥地址或标签"
-                                                                               style="width: 242px;" type="text"><a
+                                                                               style="width: 400px;" type="text"><a
                                     class="qr-scanner" href=""><i class="icon-dcn-f-qrcode"></i></a></div>
                             <div class="selectize-dropdown form-control input-lg input-dcn single"
                                  style="display: none;">
@@ -60,7 +60,7 @@
                             <div class="col-sm-6 col-btc">
                                 <input id="btc_amount" name="btc_amount"
                                        class="form-control input-lg input-dcn btc-amount" placeholder="UNC"
-                                       autocomplete="off" data-btc-input="" tabindex="2">
+                                       autocomplete="off" data-btc-input="" tabindex="2" onblur="rmb_amount.value=this.value">
                                 <div class="help-block hide">
                                     无效的金额
                                 </div>
@@ -176,10 +176,7 @@
         </div>
     </div>
 
-    <script>
- g_contact_suggestion = '[]';
-
-    </script>
+    <script>g_contact_suggestion = '[]';</script>
     <script type="text/javascript">g_js_controller = "send";</script>
 </div>
 {% endblock %}

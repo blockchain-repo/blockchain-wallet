@@ -23,8 +23,8 @@
     <div class="container">
         <div class="navbar-header">
             <!-- <a href="/" class="navbar-brand text-logo" style="background:url(/assets/css/img/logo_2x.png) no-repeat center;background-size:64px;">Bitfoo</a> -->
-            <a href="/index" class="img-logo"><img src="static/logo_2x.png"
-                                                   alt="logo"></a>
+            <!--<a href="/index" class="img-logo"><img src="static/logo_2x.png"-->
+                                                   <!--alt="logo"></a>-->
             <span id="sub_title" class="navbar-sub-title"></span>
         </div><!-- /.navbar-header -->
         <nav id="main-nav" class="navigation" role="navigation">
@@ -32,17 +32,14 @@
 
             <div class="navbar-right dropdown">
                 <a href="/index" class="btn btn-sm btn-dcn btn-dcn-default top-login-btn"
-                   data-toggle="dropdown">412681778@qq.com<span class="caret"></span></a>
+                   data-toggle="dropdown">superadmin<span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="/index">我的钱包</a></li>
-                    <li><a href="/index">转账</a></li>
-                    <li><a href="/index">充值</a></li>
+                    <li><a href="/transfer">转账</a></li>
+                    <li><a href="/recharge">充值</a></li>
                     <li><a href="/index">交易记录</a></li>
-                    <li><a href="/index">联系人</a></li>
+                    <li><a href="/index">查询交易</a></li>
                     <li><a href="/index">帐号设置</a></li>
-                    <li class="divider"></li>
-                    <li><a href="/index">理财</a></li>
-                    <li><a href="/index">币券</a></li>
                     <li class="divider"></li>
                     <li><a href="/index">退出</a></li>
                 </ul>
@@ -59,7 +56,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li data-pjax-main="" class="active"><a href="/index">首页</a></li>
-                    <li><a data-pjax-main="" href="/index">币券</a></li>
+                    <li><a data-pjax-main="" href="/index">文档</a></li>
                     <li><a data-pjax-main="" href="/index">特性</a></li>
                     <li><a data-pjax-main="" href="/index">帮助</a></li>
                 </ul>
@@ -89,21 +86,20 @@
                         <div class="user-image">
                             <a href="/index"><img
                                     src="static/bf50252b334704e14ce2e47a93b7705f"
-                                    alt="412681778@qq.com"></a>
+                                    alt="superadmin"></a>
                         </div>
-                        <div class="user-name">412681778@qq.com</div>
+                        <div class="user-name">superadmin</div>
                     </div>
                     <nav class="menu">
                         <div class="menu-header">我的钱包</div>
                         <ul class="nav nav-stacked">
-                            <li><a href="/index">转账</a></li>
-                            <li><a href="/index">充值</a></li>
+                            <li><a href="/transfer">转账</a></li>
+                            <li><a href="/recharge">充值</a></li>
                             <li>
                                 <a href="/index">
                                     交易记录 </a>
                             </li>
-                            <li><a href="/index">联系人</a></li>
-                            <li><a href="/index">BCC</a></li>
+                            <li><a href="/index">查询交易</a></li>
                             <li><a href="/index">帐号设置</a></li>
                         </ul>
                     </nav>
@@ -112,13 +108,9 @@
                         <ul class="nav nav-stacked">
                             <li>
                                 <a href="/index">
-                                    理财 <sup class="bubble"></sup>
+                                    应用开发 <sup class="bubble"></sup>
                                 </a>
                             </li>
-                            <li><a href="/index">币券</a></li>
-                            <!-- <li><a href="/donation/">捐赠按钮</a></li> -->
-                            <li><a href="/index">商家集成</a></li>
-                            <li><a href="/index">应用开发</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -141,7 +133,7 @@
 
 
             </div>
-
+            {% block pjaxsidecontainer %}
             <div id="pjax-side-container" class="col-sm-9 wallet-main">
                 <section class="balance-board">
                     <div class="balance-board-title">余额</div>
@@ -161,8 +153,8 @@
                         {% endif %}
                     </div>
                     <div class="balance-actions btn-toolbar" role="toolbar">
-                        <a href="/index" class="btn btn-lg btn-dcn btn-dcn-danger">转账</a>
-                        <a href="/index" class="btn btn-lg btn-dcn btn-dcn-primary">充值</a>
+                        <a href="/transfer" class="btn btn-lg btn-dcn btn-dcn-danger">转账</a>
+                        <a href="/recharge" class="btn btn-lg btn-dcn btn-dcn-primary">充值</a>
                     </div>
                 </section>
                 <section class="notif">
@@ -179,17 +171,14 @@
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                             aria-hidden="true">×</span></button>
                     {% if config %}
-                    <a target="_blank" class="btn btn-warning">{{config.keypair.private}}
+                    <a target="_blank" class="btn btn-warning">私钥：{{config.keypair.private}}
                     </a><br>
-                    <a style="margin-top:5px;" target="_blank" class="btn btn-warning">{{config.keypair.public}}
+                    <a style="margin-top:5px;" target="_blank" class="btn btn-warning">公钥：{{config.keypair.public}}
                     </a>
                     {% endif %}
                 </div>
 
                 <section>
-                    <div class="section-header">
-                        <h2>交易记录</h2>
-                    </div>
                     <div class="section-body">
                         <div class="transactions-summary clearfix">
                             <div class="pull-right btn-toolbar">
@@ -210,7 +199,7 @@
                             <table class="table table-striped table-transactions">
                             </table>
                             <div class="well well-empty">
-                                <p class="empty-message">暂无交易记录</p>
+                                <p class="empty-message">暂无记录</p>
                                 <p class="empty-actions">
                                     <a href="/index">需要帮助</a> 或 <a
                                         href="/index">查阅上手指南</a>。
@@ -221,6 +210,7 @@
 
                 </section>
             </div> <!-- end of pjax-side-container -->
+            {% endblock %}
         </div> <!-- end of row -->
     </div> <!-- end of container doc -->
     <script type="text/javascript">g_js_controller = "transactions";</script>
@@ -276,7 +266,7 @@
                         <li><a data-pjax-main="" href="/index">帮助</a></li>
                         <li><a data-pjax-main="" href="/index">安全系统</a></li>
                         <li><a href="/index" target="_blank">开发者文档</a></li>
-                        <li><a href="/index">100%准备金证明</a></li>
+                        <li><a href="/index">概念证明</a></li>
                         <li><a href="/index">节点状态</a></li>
                     </ul>
                 </div>

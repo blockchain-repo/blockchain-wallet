@@ -1,20 +1,13 @@
 import json
+from flask import render_template
 
 import config as c
 from app import app
 from app.models.account_utxo_balance import UTXO
-
-from flask import jsonify, render_template
-
-
-@app.route('/', methods=['GET', 'POST'])
-@app.route('/index', methods=['GET', 'POST'])
-def index():
-    balance = 5000 + 1
-    return render_template('index.html', config=c.config,balance=balance)
+from app.models.secretbox import secretbox
 
 
-@app.route('/base', methods=['GET', 'POST'])
+@app.route('/old', methods=['GET', 'POST'])
 def base():
     balance = 0
     host_ip = c.config['server']['host']
@@ -22,7 +15,27 @@ def base():
     utxo = json.loads(UTXO(c.config['keypair']['public'], host_ip, host_port))
     for i in utxo['data']:
         balance += i['amount']
-    return render_template('base.html', config=c.config, balance=balance)
+    secretbox()
+    return render_template('old.html', config=c.config, balance=balance)
+
+
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
+def index():
+    balance = 5000 + 1
+    return render_template('index.html', config=c.config, balance=balance)
+
+
+@app.route('/recharge', methods=['GET', 'POST'])
+def recharge():
+    balance = 5000 + 1
+    return render_template('recharge.html', config=c.config, balance=balance)
+
+
+@app.route('/transfer', methods=['GET', 'POST'])
+def transfer():
+    balance = 5000 + 1
+    return render_template('transfer.html', config=c.config, balance=balance)
 
 #
 # @app.route('/config', methods=['GET'])

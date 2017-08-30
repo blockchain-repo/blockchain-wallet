@@ -14,6 +14,3 @@ def secretbox():
     ciphertext = c.crypto_secretbox(msg.encode(), base58.b58decode(nonce), base58.b58decode(private_key))
     msg2 = c.crypto_secretbox_open(ciphertext, base58.b58decode(nonce), base58.b58decode(private_key))
     print("msg2:       ", msg2)
-
-
-secretbox()

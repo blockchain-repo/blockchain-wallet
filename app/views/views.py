@@ -68,6 +68,12 @@ def transfer_post():
         balance += i['amount']
     return render_template('index.html', config=c.config, balance=balance)
 
+
+@app.route('/transactions', methods=['GET'])
+def transactions_get():
+    balance = 0
+    return render_template('transactions.html', config=c.config, balance=balance)
+
 #
 # @app.route('/config', methods=['GET'])
 # def config_form():

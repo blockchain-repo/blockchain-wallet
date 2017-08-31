@@ -7,7 +7,7 @@ import config as c
 from app import app
 from app.models.account_utxo_balance import UTXO
 from app.models.create_asset_tx import create_asset_tx
-from app.models.secretbox import secretbox
+from app.models.transfer_asset_tx import transfer_asset_tx
 
 public = c.config['keypair']['public']
 private = c.config['keypair']['private']
@@ -56,8 +56,16 @@ def transfer_get():
 @app.route('/transfer', methods=['POST'])
 def transfer_post():
     balance = 0
-    if request.form['btc_amount']:
-        balance -= int(request.form['btc_amount'])
+    if request.form['btc_amount'] and request.form['target'] and request.form['private_flag']:
+        amount = int(request.form['btc_amount'])
+        target = request.form['target']
+        flag = True if request.form['private_flag'] == "true" else False
+        msg = request.form.get('leave_message', '')
+        transfer_asset_tx(public, private, target, amount, msg, flag, host, port)
+        time.sleep(2)
+    utxo = json.loads(UTXO(public, host, port))
+    for i in utxo['data']:
+        balance += i['amount']
     return render_template('index.html', config=c.config, balance=balance)
 
 #

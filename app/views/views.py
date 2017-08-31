@@ -1,7 +1,7 @@
 import json
 import time
 
-from flask import render_template, request
+from flask import render_template, request, jsonify, make_response, abort
 
 import config as c
 from app import app
@@ -104,6 +104,26 @@ def query_post():
         elif data.get('encrypted', '') and data.get('nonce', ''):
             msg = open_secretbox(private, data['encrypted'], data['nonce']).decode()
     return render_template('query.html', config=c.config, balance=balance, tx=tx, msg=msg)
+
+
+@app.route('/transaction', methods=['GET'])
+def transaction_get():
+    if request.args.get('tx_id'):
+        tx = json.loads(query_tx(request.args.get('tx_id'), host, port)).get('data', {})
+        return jsonify(tx)
+    else:
+        abort(404)
+
+
+@app.route('/downtx', methods=['GET'])
+def downtx():
+    if request.args.get('tx_id'):
+        tx = json.loads(query_tx(request.args.get('tx_id'), host, port)).get('data', {})
+        response = make_response(json.dumps(tx, indent=4))
+        response.headers["Content-Disposition"] = "attachment; filename={}.json".format(request.args.get('tx_id'))
+        return response
+    else:
+        abort(404)
 
 # @app.route('/config', methods=['GET'])
 # def config_form():

@@ -18,5 +18,5 @@ def open_secretbox(private, ciphertext, nonce):
 
 
 if __name__ == '__main__':
-    print(open_secretbox("6iXMPtr7oT4ch1GXFFaiqexHNPFemN54oFwHiH4kAFDG", "4gP5V97RigNXYgDhdxtjumjNYK5nVL2DFdk5SxJ4A3w",
-                         "Q2yPmEihwBrTJ947MNYwgved7REeW5zNb").decode())
+    print(open_secretbox("6iXMPtr7oT4ch1GXFFaiqexHNPFemN54oFwHiH4kAFDG", "WZT6b7hsUxrAXBKTMiLWbA",
+                         "LZAJdouiEm9uRzzpLKQ9QMPxqWhMvB1dU").decode())

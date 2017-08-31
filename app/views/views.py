@@ -1,12 +1,14 @@
 import json
-
 import time
+
 from flask import render_template, request
 
 import config as c
 from app import app
 from app.models.account_utxo_balance import UTXO
 from app.models.create_asset_tx import create_asset_tx
+from app.models.query_tx import query_tx
+from app.models.secretbox import open_secretbox
 from app.models.transfer_asset_tx import transfer_asset_tx
 from app.models.tx_record import tx_record, format_time
 
@@ -82,7 +84,27 @@ def transactions_get():
             tx['operation'] = "转出" if tx['owner_before'] == public else "转入"
     return render_template('transactions.html', config=c.config, balance=balance, txs=txs)
 
-#
+
+@app.route('/query', methods=['GET'])
+def query_get():
+    balance = 0
+    return render_template('query.html', config=c.config, balance=balance)
+
+
+@app.route('/query', methods=['POST'])
+def query_post():
+    balance = 0
+    tx = {}
+    msg = ""
+    if request.form['target']:
+        tx = json.loads(query_tx(request.form['target'], host, port)).get('data', {})
+        data = tx['transaction']['metadata']['data']
+        if data.get('raw', ''):
+            msg = data['raw']
+        elif data.get('encrypted', '') and data.get('nonce', ''):
+            msg = open_secretbox(private, data['encrypted'], data['nonce']).decode()
+    return render_template('query.html', config=c.config, balance=balance, tx=tx, msg=msg)
+
 # @app.route('/config', methods=['GET'])
 # def config_form():
 #     return '''<form action="/config" method="post">

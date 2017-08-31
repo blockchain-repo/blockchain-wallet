@@ -40,10 +40,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-group form-group-fee" >
+                <div class="form-group form-group-fee">
                     <label class="control-label" for="private_flag">加密留言</label>
                     <div class="control-input">
-                        <select id="private_flag" name="private_flag" class="form-control input-lg input-dcn" tabindex="2">
+                        <select id="private_flag" name="private_flag" class="form-control input-lg input-dcn"
+                                tabindex="2">
                             <option value="true">是</option>
                             <option value="false">否</option>
                         </select>
@@ -108,75 +109,5 @@
             </form>
         </div>
     </section>
-
-
-    <!-- send confirm modal -->
-    <div class="modal fade modal-send-confirm">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4>确认转账</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="md_send_confirm">
-
-
-                        <div class="form-group row no-control">
-                            <label class="control-label col-sm-2">转账至</label>
-                            <label id="md_target_address" class="control-label"></label>
-                        </div>
-
-                        <div class="form-group row no-control">
-                            <label class="control-label col-sm-2">金额</label>
-                            <label id="md_btc_amount" class="control-label"></label><label class="control-label">&nbsp;BTC
-                            ≈&nbsp;</label><label id="md_rmb_amount" class="control-label"></label><label
-                                class="control-label">&nbsp;CNY</label>
-                        </div>
-
-                        <div class="form-group row no-control">
-                            <label class="control-label col-sm-2">留言</label>
-                            <label id="md_leave_message" class="control-label"></label>
-                        </div>
-
-
-                        <div class="form-group alert alert-dcn alert-warning">
-                            <span class="form-control-static">手机、Google Authenticator 至少要绑定一个才可以发款</span>
-                        </div>
-
-                        <div class="form-group form-action">
-                            <div class="control-input text-right">
-                                <a href="/settings/#setting_security" target="_blank"
-                                   class="btn btn-lg btn-dcn btn-dcn-primary">立即绑定</a>
-                            </div>
-                        </div>
-
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- qr scanner modal -->
-    <div class="modal fade modal-qr-scanner">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4>二维码扫描
-                        <small class="text-muted">请选择允许打开摄像头</small>
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div id="md_qr_reader" style="width:520px;height:410px;">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>g_contact_suggestion = '[]';</script>
-    <script type="text/javascript">g_js_controller = "send";</script>
 </div>
 {% endblock %}

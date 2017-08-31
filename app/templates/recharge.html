@@ -15,16 +15,15 @@
 
 {% block pjaxsidecontainer %}
 <div id="pjax-side-container" class="col-sm-9 wallet-main">
-
+    <!--面包屑导航-->
     <ol class="breadcrumb">
         <li><a href="/index">我的钱包</a></li>
         <li class="active">充值</li>
     </ol>
-    <div id="alert_messages"></div>
-
     <section>
         <div id="pre-send" class="col-md-8 tab-pane active fade in">
             <form action="/recharge" method="post" class="form-horizontal">
+                <!--输入栏-->
                 <div class="form-group">
                     <label class="control-label" for="target_address">充值至</label>
                     <div class="control-input">
@@ -34,8 +33,7 @@
                         <div class="selectize-control form-control input-lg input-dcn single">
                             <div class="selectize-input items not-full">
                                 <input id="target" name="target" autocomplete="off" tabindex="1"
-                                       placeholder="电子邮箱、手机号、比特币地址或标签"
-                                       value={{config.keypair.public}}
+                                       placeholder="电子邮箱、手机号、比特币地址或标签" value={{config.keypair.public}}
                                        style="width: 400px;" type="text">
                                 <a class="qr-scanner" href=""><i class="icon-dcn-f-qrcode"></i></a></div>
                             <div class="selectize-dropdown form-control input-lg input-dcn single"
@@ -50,10 +48,11 @@
                             无效的接收地址
                         </div>
                         <div class="help-block err16005 hide">
-                            //无法充值给自己
+                            无法充值给自己
                         </div>
                     </div>
                 </div>
+                <!--加密选择-->
                 <div class="form-group form-group-fee">
                     <label class="control-label" for="private_flag">加密留言</label>
                     <div class="control-input">
@@ -67,6 +66,7 @@
                         </div>
                     </div>
                 </div>
+                <!--金额-->
                 <div class="form-group" data-amount-input-control="">
                     <label class="control-label" for="btc_amount">金额</label>
                     <div class="control-input">
@@ -102,6 +102,7 @@
                         </div>
                     </div>
                 </div>
+                <!--留言-->
                 <div class="form-group">
                     <label id="internal_msg" class="control-label" for="leave_message">留言</label>
                     <label id="external_msg" class="control-label hide" for="leave_message">备注</label>
@@ -110,12 +111,12 @@
                                   placeholder="可选" tabindex="3"></textarea>
                     </div>
                 </div>
-
+                <!--按钮-->
                 <div class="form-group form-action">
                     <label class="control-label">&nbsp;</label>
                     <div class="control-input">
                         <div id="external_warning" class="alert alert-warning hide">
-                            注意：外部充值通过系统地址发出，此系统地址无法接收比特币。
+                            注意
                         </div>
                         <button type="submit" class="btn btn-lg btn-dcn btn-dcn-primary" tabindex="4">充值</button>
                     </div>

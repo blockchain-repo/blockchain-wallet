@@ -15,15 +15,15 @@
 
 {% block pjaxsidecontainer %}
 <div id="pjax-side-container" class="col-sm-9 wallet-main">
-
+    <!--面包屑导航-->
     <ol class="breadcrumb">
         <li><a href="/index">我的钱包</a></li>
         <li class="active">查询交易</li>
     </ol>
-    <div id="alert_messages"></div>
     <section>
         <div id="pre-send" class="col-md-8 tab-pane active fade in">
             <form action="/query" method="post" class="form-horizontal">
+                <!--交易ID输入栏-->
                 <div class="form-group">
                     <label class="control-label" for="target_address">交易ID</label>
                     <div class="control-input">
@@ -32,8 +32,7 @@
                                type="text">
                         <div class="selectize-control form-control input-lg input-dcn single" style="width: 550px;">
                             <div class="selectize-input items not-full">
-                                <input id="target" name="target" autocomplete="off" tabindex="1"
-                                       placeholder="交易的唯一ID"
+                                <input id="target" name="target" autocomplete="off" tabindex="1" placeholder="交易的唯一ID"
                                        style="width: 550px;" type="text">
                             </div>
                             <div class="selectize-dropdown form-control input-lg input-dcn single"
@@ -48,20 +47,22 @@
                             无效的接收地址
                         </div>
                         <div class="help-block err16005 hide">
-                            //无法给自己
+                            无法给自己
                         </div>
                     </div>
                 </div>
+                <!--按钮-->
                 <div class="form-group form-action">
                     <label class="control-label">&nbsp;</label>
                     <div class="control-input">
                         <div id="external_warning" class="alert alert-warning hide">
-                            注意：通过系统地址发出，此系统地址无法接收比特币。
+                            注意
                         </div>
                         <button type="submit" class="btn btn-lg btn-dcn btn-dcn-primary" tabindex="4">查询</button>
                     </div>
                 </div>
                 {% if msg %}
+                <!--留言-->
                 <div class="form-group">
                     <label id="internal_msg" class="control-label" for="leave_message">留言</label>
                     <label id="external_msg" class="control-label hide" for="leave_message">备注</label>
@@ -72,6 +73,7 @@
                 </div>
                 {% endif %}
                 {% if tx %}
+                <!--交易-->
                 <div class="form-group">
                     <label id="internal_tx" class="control-label" for="leave_message">交易</label>
                     <label id="external_tx" class="control-label hide" for="leave_tx">备注</label>
@@ -80,16 +82,15 @@
                                   tabindex="3" style="width: 550px;">{{ tx }}</textarea>
                     </div>
                 </div>
+                <!--导出-->
                 <div class="transactions-summary clearfix">
                     <div class="pull-right btn-toolbar">
                         <div class="btn-group btn-group-sm">
-                            <a href="/index"
-                               class="btn btn-dcn btn-dcn-default dropdown-toggle" data-toggle="dropdown">导出整个交易
-                                <span class="caret"></span></a>
+                            <a href="/index" class="btn btn-dcn btn-dcn-default dropdown-toggle" data-toggle="dropdown">导出整个交易<span
+                                    class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a target="_blank" href="/transaction?tx_id={{ tx.id }}">WEB</a>
+                                <li><a target="_blank" href="/transaction?tx_id={{ tx.id }}">WEB</a></li>
                                 <li><a href="/downtx?tx_id={{ tx.id }}">JSON</a></li>
-                                </li>
                             </ul>
                         </div>
                     </div>

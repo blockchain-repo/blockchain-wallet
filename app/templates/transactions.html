@@ -15,13 +15,11 @@
 
 {% block pjaxsidecontainer %}
 <div id="pjax-side-container" class="col-sm-9 wallet-main">
-    <section>
-        <ol class="breadcrumb">
-            <li><a href="/dashboard/">我的钱包</a></li>
-            <li class="active">交易记录</li>
-        </ol>
-    </section>
-    <div id="alert_messages"></div>
+    <!--面包屑导航-->
+    <ol class="breadcrumb">
+        <li><a href="/dashboard/">我的钱包</a></li>
+        <li class="active">交易记录</li>
+    </ol>
     <section>
         <div class="table-responsive">
             <table class="table table-striped table-transactions">
@@ -42,7 +40,6 @@
                     <td>{{ tx.owners_after }}</td>
                     <td>{{ tx.id }}</td>
                 </tr>
-
                 {% endfor %}
                 </tbody>
                 {% endif %}

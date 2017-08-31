@@ -2,6 +2,7 @@ import collections
 import copy
 import json
 import os
+
 from collections import namedtuple
 from cryptoconditions import crypto
 

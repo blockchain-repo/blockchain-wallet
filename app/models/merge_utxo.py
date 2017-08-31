@@ -36,9 +36,9 @@ def merge_utxo(verifying_key, signing_key, host_ip, host_port):
 
     # create trnsaction
     if balance <= 0:
-        return ('No need to merge, because of lack of balance')
+        return 'No need to merge, because of lack of balance'
     elif length <= 1:
-        return ('No need to merge, because of a small amount of utxo')
+        return 'No need to merge, because of a small amount of utxo'
     else:
         tx = Transaction.transfer(inputs, [([verifying_key], balance)], asset)
     # sign with private key
@@ -51,29 +51,28 @@ def merge_utxo(verifying_key, signing_key, host_ip, host_port):
     r = requests.post(url, data=value, headers=headers)
     return (r.json())
 
-
-if __name__ == '__main__':
-    account = {}
-    with open('.account') as fp:
-        account = json.load(fp)
-    try:
-        username = account['username']
-        verifying_key = account['verifying_key']
-        signing_key = account['signing_key']
-    except ValueError:
-        exit('need .account')
-
-    config = {}
-    with open('.config') as fp:
-        config = json.load(fp)
-    try:
-        host_ip = config['host_ip']
-        host_port = config['host_port']
-    except ValueError:
-        exit('need .config')
-
-    # TODO : validate
-    if not len(sys.argv) == 1:
-        print("Please provide two parameters for owner_after(key) and amount(int)!")
-        sys.exit()
-    print(json.dumps(merge_utxo(verifying_key, signing_key, host_ip, host_port), indent=4))
+# if __name__ == '__main__':
+#     account = {}
+#     with open('.account') as fp:
+#         account = json.load(fp)
+#     try:
+#         username = account['username']
+#         verifying_key = account['verifying_key']
+#         signing_key = account['signing_key']
+#     except ValueError:
+#         exit('need .account')
+#
+#     config = {}
+#     with open('.config') as fp:
+#         config = json.load(fp)
+#     try:
+#         host_ip = config['host_ip']
+#         host_port = config['host_port']
+#     except ValueError:
+#         exit('need .config')
+#
+#     # TODO : validate
+#     if not len(sys.argv) == 1:
+#         print("Please provide two parameters for owner_after(key) and amount(int)!")
+#         sys.exit()
+#     print(json.dumps(merge_utxo(verifying_key, signing_key, host_ip, host_port), indent=4))

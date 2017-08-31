@@ -17,7 +17,7 @@ def open_secretbox(private, ciphertext, nonce):
         plaintext = c.crypto_secretbox_open(base58.b58decode(ciphertext), base58.b58decode(nonce),
                                             base58.b58decode(private))
     except CryptoError:
-        msg = "Decryption failed. Ciphertext failed verification.\n"+"（解密失败，用户将留言设置为私密）"
+        msg = "Decryption failed. Ciphertext failed verification.\n" + "（解密失败，用户将留言设置为私密）"
         return msg.encode('utf-8')
     return plaintext
 

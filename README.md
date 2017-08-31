@@ -7,6 +7,8 @@ sudo pip3 install -r requirements.txt
 python3 manage.py
 ```
 
+Then, open `localhost:500` in your browser
+
 ### Default Config (.unichain-account)
 
 ```

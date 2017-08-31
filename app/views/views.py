@@ -8,6 +8,7 @@ from app import app
 from app.models.account_utxo_balance import UTXO
 from app.models.create_asset_tx import create_asset_tx
 from app.models.transfer_asset_tx import transfer_asset_tx
+from app.models.tx_record import tx_record, format_time
 
 public = c.config['keypair']['public']
 private = c.config['keypair']['private']
@@ -72,7 +73,14 @@ def transfer_post():
 @app.route('/transactions', methods=['GET'])
 def transactions_get():
     balance = 0
-    return render_template('transactions.html', config=c.config, balance=balance)
+    txs = json.loads(tx_record(public, host, port))
+    for tx in txs:
+        tx['timestamp'] = format_time(tx['timestamp'])
+        if tx['operation'] == "CREATE":
+            tx['operation'] = "充值"
+        else:
+            tx['operation'] = "转出" if tx['owner_before'] == public else "转入"
+    return render_template('transactions.html', config=c.config, balance=balance, txs=txs)
 
 #
 # @app.route('/config', methods=['GET'])

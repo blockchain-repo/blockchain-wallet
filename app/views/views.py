@@ -80,8 +80,16 @@ def transactions_get():
         tx['timestamp'] = format_time(tx['timestamp'])
         if tx['operation'] == "CREATE":
             tx['operation'] = "充值"
+            tx['target'] = ""
+        elif tx['owner_before'] == public:
+            tx['operation'] = "转出"
+            tx['target'] = tx['owners_after']
+        elif tx['owners_after'] == public:
+            tx['operation'] = "转入"
+            tx['target'] = tx['owner_before']
         else:
-            tx['operation'] = "转出" if tx['owner_before'] == public else "转入"
+            tx['operation'] = "未知"
+            tx['target'] = ""
     return render_template('transactions.html', config=c.config, balance=balance, txs=txs)
 
 

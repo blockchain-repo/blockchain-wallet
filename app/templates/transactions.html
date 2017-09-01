@@ -27,18 +27,20 @@
                 <tbody>
                 <tr>
                     <th nowrap>时间</th>
+                    <th nowrap>交易ID</th>
                     <th nowrap>类型</th>
                     <th nowrap>金额</th>
                     <th nowrap>对方公钥</th>
-                    <th nowrap>交易ID</th>
+
                 </tr>
                 {% for tx in txs %}
                 <tr>
                     <td>{{ tx.timestamp }}</td>
+                    <td>{{ tx.id }}</td>
                     <td>{{ tx.operation }}</td>
                     <td>{{ tx.amount }}</td>
-                    <td>{{ tx.owners_after }}</td>
-                    <td>{{ tx.id }}</td>
+                    <td>{{ tx.target }}</td>
+
                 </tr>
                 {% endfor %}
                 </tbody>

@@ -80,12 +80,15 @@ def transactions_get():
         tx['timestamp'] = format_time(tx['timestamp'])
         if tx['operation'] == "CREATE":
             tx['operation'] = "充值"
+            # tx['amount'] = "+" + str(tx['amount'])
             tx['target'] = ""
         elif tx['owner_before'] == public:
             tx['operation'] = "转出"
+            # tx['amount'] = "-" + str(tx['amount'])
             tx['target'] = tx['owners_after']
         elif tx['owners_after'] == public:
             tx['operation'] = "转入"
+            # tx['amount'] = "+" + str(tx['amount'])
             tx['target'] = tx['owner_before']
         else:
             tx['operation'] = "未知"

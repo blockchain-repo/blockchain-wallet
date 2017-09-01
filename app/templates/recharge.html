@@ -118,7 +118,15 @@
                         <div id="external_warning" class="alert alert-warning hide">
                             注意
                         </div>
-                        <button type="submit" class="btn btn-lg btn-dcn btn-dcn-primary" tabindex="4">充值</button>
+                        <button id="send" type="submit" class="btn btn-lg btn-dcn btn-dcn-primary" tabindex="4"
+                                onclick="Color()">充值
+                        </button>
+                        <script type="text/javascript">
+                            function Color(){
+                                var send = document.getElementById("send");
+                                send.style.backgroundColor = "gray";
+                            };
+                        </script>
                     </div>
                 </div>
             </form>

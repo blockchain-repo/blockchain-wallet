@@ -7,10 +7,10 @@ from cryptoconditions import (Fulfillment as CCFulfillment,
                               PreimageSha256Fulfillment)
 from cryptoconditions.exceptions import ParsingError
 
-from bigchaindb.common.crypto import SigningKey, hash_data
-from bigchaindb.common.exceptions import (KeypairMismatchException,
+from app.models.common.crypto import SigningKey, hash_data
+from app.models.common.exceptions import (KeypairMismatchException,
                                           InvalidHash, InvalidSignature)
-from bigchaindb.common.util import serialize, gen_timestamp
+from app.models.common.util import serialize, gen_timestamp
 
 
 class Fulfillment(object):

@@ -4,6 +4,8 @@
 
 ```
 sudo pip3 install -r requirements.txt
+[optional]python3 config.py
+[optional]vim .unichain-account <modify the default config and save>
 python3 manage.py
 ```
 

@@ -9,4 +9,6 @@ debug = config.config['app']['debug']
 host = config.config['app']['host']
 port = config.config['app']['port']
 app.debug = debug
-app.run(host=host, port=port)
+
+if __name__ == '__main__':
+    app.run(host=host, port=port)

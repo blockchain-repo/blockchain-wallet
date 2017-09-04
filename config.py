@@ -42,7 +42,8 @@ def create_config():
     config['keypair']['private'] = keypair.private
     config['keypair']['public'] = keypair.public
     json_account = json.dumps(config, indent=4)
-    f.write(json_account+"\n")
+    print("Default config created:\n", json_account)
+    f.write(json_account + "\n")
     f.close()
 
 
@@ -146,3 +147,7 @@ def map_leafs(func, mapping):
         return mapping
 
     return _inner(copy.deepcopy(mapping))
+
+
+if __name__ == '__main__':
+    create_config()

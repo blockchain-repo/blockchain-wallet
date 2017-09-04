@@ -13,6 +13,11 @@ config = {
         'host': 'localhost',
         'port': '9984'
     },
+    'app': {
+        'debug': True,
+        'host': '0.0.0.0',
+        'port': 5000
+    },
     'keypair': {
         'public': '',
         'private': ''
@@ -36,8 +41,8 @@ def create_config():
     f = open('.unichain-account', 'w')
     config['keypair']['private'] = keypair.private
     config['keypair']['public'] = keypair.public
-    json_account = json.dumps(config)
-    f.write(json_account)
+    json_account = json.dumps(config, indent=4)
+    f.write(json_account+"\n")
     f.close()
 
 

@@ -5,5 +5,8 @@ config.set_config()
 
 from app import app
 
-app.debug = True
-app.run(host='0.0.0.0', port=5000)
+debug = config.config['app']['debug']
+host = config.config['app']['host']
+port = config.config['app']['port']
+app.debug = debug
+app.run(host=host, port=port)

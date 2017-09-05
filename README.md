@@ -3,6 +3,11 @@
 ### Quick Start
 
 ```
+[optional]sudo apt-get update
+[optional]sudo apt-get install g++ python3-dev libffi-dev build-essential libssl-dev
+[optional]sudo apt-get install python3-pip
+[optional]sudo pip3 install --upgrade pip setuptools
+
 sudo pip3 install -r requirements.txt
 [optional]python3 config.py
 [optional]vim .unichain-account <modify the default config and save>

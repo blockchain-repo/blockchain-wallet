@@ -29,4 +29,3 @@ if __name__ == '__main__':
     print(open_secretbox("UzGKkAkBMbjrkTgYjSExGAZsgnTMFpKeahCxHfjPhUW",
                          "2o459znSXS1tHkRVhQxtZj3cM1SvhtEzsdzvGHeBJbE2eCsDpiT",
                          "HSYZo8HrMTRV4HAzmgJHje6ELQWPz1xU5").decode())
-5

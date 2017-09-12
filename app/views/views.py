@@ -16,6 +16,7 @@ public = c.config['keypair']['public']
 private = c.config['keypair']['private']
 host = c.config['server']['host']
 port = c.config['server']['port']
+delay = 3
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -43,7 +44,7 @@ def recharge_post():
         flag = True if request.form['private_flag'] == "true" else False
         msg = request.form.get('leave_message', '')
         create_asset_tx(public, private, target, amount, msg, flag, host, port)
-        time.sleep(2)
+        time.sleep(delay)
     utxo = json.loads(UTXO(public, host, port))
     for i in utxo['data']:
         balance += i['amount']
@@ -65,7 +66,7 @@ def transfer_post():
         flag = True if request.form['private_flag'] == "true" else False
         msg = request.form.get('leave_message', '')
         transfer_asset_tx(public, private, target, amount, msg, flag, host, port)
-        time.sleep(2)
+        time.sleep(delay)
     utxo = json.loads(UTXO(public, host, port))
     for i in utxo['data']:
         balance += i['amount']

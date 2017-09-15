@@ -14,7 +14,11 @@ def format_time(time_num):
 
 
 def tx_record(public, host, port):
-    url = 'http://{}:{}/uniledger/v1/transaction/getTxRecord?public_key={}'.format(host, port, public)
+    size = 100
+    num = 1
+    url = 'http://{}:{}/uniledger/v1/transaction/getTxRecord?public_key={}&pageSize={}&pageNum={}'.format(host, port,
+                                                                                                          public, size,
+                                                                                                          num)
     r = requests.get(url)
     return r.text
 

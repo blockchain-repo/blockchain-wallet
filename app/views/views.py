@@ -76,7 +76,7 @@ def transfer_post():
 @app.route('/transactions', methods=['GET'])
 def transactions_get():
     balance = 0
-    txs = json.loads(tx_record(public, host, port))
+    txs = json.loads(tx_record(public, host, port))['record']
     for tx in txs:
         tx['timestamp'] = format_time(tx['timestamp'])
         if tx['operation'] == "CREATE":

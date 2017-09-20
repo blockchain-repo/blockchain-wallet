@@ -2,7 +2,6 @@
 
 """
 import json
-import sys
 
 import requests
 
@@ -38,14 +37,13 @@ def merge_utxo(verifying_key, signing_key, host_ip, host_port):
         return 'No need to merge, because utxo len = 1'
     else:
         tx = Transaction.transfer(inputs, [([verifying_key], balance)], metadata=metadata, asset=asset)
-    # sign with private key
-    tx = tx.sign([signing_key])
+        tx = tx.sign([signing_key])
 
-    url = 'http://{}:{}/uniledger/v1/transaction/createOrTransferTx'.format(host_ip, host_port)
-    headers = {'content-type': 'application/json'}
-    value = json.dumps(tx.to_dict())
-    r = requests.post(url, data=value, headers=headers)
-    return r.json()
+        url = 'http://{}:{}/uniledger/v1/transaction/createOrTransferTx'.format(host_ip, host_port)
+        headers = {'content-type': 'application/json'}
+        value = json.dumps(tx.to_dict())
+        r = requests.post(url, data=value, headers=headers)
+        return r.json()
 
 
 if __name__ == '__main__':
@@ -60,4 +58,4 @@ if __name__ == '__main__':
         port = account['server']['port']
         print(json.dumps(merge_utxo(public, private, host, port), indent=4))
     except ValueError:
-        exit('need .account')
+        exit('can not find ../.unichain-account')

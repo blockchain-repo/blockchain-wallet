@@ -30,17 +30,17 @@
                     <li><a href="/recharge">充值</a></li>
                     <li><a href="/transactions">交易记录</a></li>
                     <li><a href="/query">查询交易</a></li>
-                    <li><a href="/index">帐号设置</a></li>
-                    <li class="divider"></li>
-                    <li><a href="/index">退出</a></li>
+                    <!--<li><a href="/index">帐号设置</a></li>-->
+                    <!--<li class="divider"></li>-->
+                    <!--<li><a href="/index">退出</a></li>-->
                 </ul>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li data-pjax-main="" class="active"><a href="/index">首页</a></li>
-                    <li><a data-pjax-main="" href="/index">特性</a></li>
-                    <li><a data-pjax-main="" href="/index">文档</a></li>
-                    <li><a data-pjax-main="" href="/index">帮助</a></li>
+                    <!--<li><a data-pjax-main="" href="/index">特性</a></li>-->
+                    <!--<li><a data-pjax-main="" href="/index">文档</a></li>-->
+                    <!--<li><a data-pjax-main="" href="/index">帮助</a></li>-->
                 </ul>
             </div>
         </nav>
@@ -71,34 +71,34 @@
                             <li><a href="/recharge">充值</a></li>
                             <li><a href="/transactions">交易记录</a></li>
                             <li><a href="/query">查询交易</a></li>
-                            <li><a href="/index">帐号设置</a></li>
+                            <!--<li><a href="/index">帐号设置</a></li>-->
                         </ul>
                     </nav>
                     {% endblock %}
-                    <nav class="menu">
-                        <div class="menu-header">其他服务</div>
-                        <ul class="nav nav-stacked">
-                            <li><a href="/index">应用开发</a></li>
-                        </ul>
-                    </nav>
+                    <!--<nav class="menu">-->
+                        <!--<div class="menu-header">其他服务</div>-->
+                        <!--<ul class="nav nav-stacked">-->
+                            <!--<li><a href="/index">应用开发</a></li>-->
+                        <!--</ul>-->
+                    <!--</nav>-->
                 </div>
                 <!--新手任务-->
-                <div class="panel newbie-questions">
-                    <div class="panel-heading">新手任务</div>
-                    <div class="panel-body">
-                        <div class="progress">
-                            <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0"
-                                 aria-valuemax="100" style="width: 33%;">
-                                <span class="sr-only">33% Complete</span>
-                            </div>
-                        </div>
-                        <ul class="list-stacked list-checked">
-                            <li class="checked"><a href="/index">绑定邮箱</a></li>
-                            <li><a href="/index">绑定手机</a></li>
-                            <li><a href="/index">绑定二次认证</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <!--<div class="panel newbie-questions">-->
+                    <!--<div class="panel-heading">新手任务</div>-->
+                    <!--<div class="panel-body">-->
+                        <!--<div class="progress">-->
+                            <!--<div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0"-->
+                                 <!--aria-valuemax="100" style="width: 33%;">-->
+                                <!--<span class="sr-only">33% Complete</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<ul class="list-stacked list-checked">-->
+                            <!--<li class="checked"><a href="/index">绑定邮箱</a></li>-->
+                            <!--<li><a href="/index">绑定手机</a></li>-->
+                            <!--<li><a href="/index">绑定二次认证</a></li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
             {% block pjaxsidecontainer %}
             <div id="pjax-side-container" class="col-sm-9 wallet-main">
@@ -126,14 +126,14 @@
                     </div>
                 </section>
                 <!--提示-->
-                <section class="notif">
-                    <div class="alert alert-dcn alert-dcn-warning">
-                        <h2>感谢使用！</h2>
-                        <p>为保障您的帐号安全，请 <a href="/index" class="text-highlight">绑定手机</a>
-                            <a href="/index" class="text-highlight">绑定二次认证</a> 。
-                        </p>
-                    </div>
-                </section>
+                <!--<section class="notif">-->
+                    <!--<div class="alert alert-dcn alert-dcn-warning">-->
+                        <!--<h2>感谢使用！</h2>-->
+                        <!--<p>为保障您的帐号安全，请 <a href="/index" class="text-highlight">绑定手机</a>-->
+                            <!--<a href="/index" class="text-highlight">绑定二次认证</a> 。-->
+                        <!--</p>-->
+                    <!--</div>-->
+                <!--</section>-->
                 <!--公私钥-->
                 <div class="alert alert-warning alert-dismissible" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -153,10 +153,10 @@
                                 <p class="empty-message">区块链地址<a target="_blank"
                                                                  href="http://{{config.server.host}}:{{config.server.port}}/">{{config.server.host}}:{{config.server.port}}</a>
                                 </p>
-                                <p class="empty-actions">
-                                    <a href="/index">需要帮助</a> 或
-                                    <a href="/index">查阅上手指南</a>。
-                                </p>
+                                <!--<p class="empty-actions">-->
+                                    <!--<a href="/index">需要帮助</a> 或-->
+                                    <!--<a href="/index">查阅上手指南</a>。-->
+                                <!--</p>-->
                             </div>
                         </div>
                     </div>
@@ -168,77 +168,78 @@
 </main> <!-- end of main -->
 
 <!-- footer -->
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <!--LEFT footer-->
-            <div class="col-md-6 col-sm-5 col-sm-12 footer-copyright">
-                <p>© 2017-2017 KURO1</p>
-                <div class="footer-links-inline">
-                    <span class="dropdown">
-                    <a href="/index" data-toggle="dropdown" role="menu"><img src="static/zh-CN.png"
-                                                                             class="country-flag"> 简体中文</a>
-                    <ul class="dropdown-menu lang-switch-menu">
-                        <li class="active"><a data-lang-switch="zh-CN" href="/index"><img src="static/zh-CN.png"
-                                                                                          class="country-flag"> 简体中文</a></li>
-                        <li><a data-lang-switch="en" href="/index"><img src="static/en.png" class="country-flag"> English</a></li>
-                    </ul>
-                    </span>
-                    <a data-pjax-main="" href="/index">服务协议</a>
-                    <a data-pjax-main="" href="/index">隐私权政策</a>
-                </div>
-                <div class="price-stats">
-                    <span class="text-success"><i class="icon-dcn-f-bitcoin"></i> 28968</span> CNY = 1 BTC
-                </div>
-            </div>
-            <!--RIGHT footer-->
-            <div class="col-sm-2 col-xs-4">
-                <div class="footer-links">
-                    <h4 class="title">关于我们</h4>
-                    <ul class="list-unstyled">
-                        <li><a data-pjax-main="" href="/index">公司简介</a></li>
-                        <li><a data-pjax-main="" href="/index">联系我们</a></li>
-                        <li><a data-pjax-main="" href="/index">加入我们</a></li>
-                        <li><a data-pjax-main="" href="/index">媒体报道</a></li>
-                        <li><a href="/index" target="_blank">技术博客</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-2 col-xs-4">
-                <div class="footer-links">
-                    <h4 class="title">用户支持</h4>
-                    <ul class="list-unstyled">
-                        <li><a data-pjax-main="" href="/index">帮助</a></li>
-                        <li><a data-pjax-main="" href="/index">安全系统</a></li>
-                        <li><a href="/index" target="_blank">开发者文档</a></li>
-                        <li><a href="/index">概念证明</a></li>
-                        <li><a href="/index">节点状态</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-sm-2 col-xs-4">
-                <div class="footer-links footer-links-social">
-                    <h4 class="title">关注我们</h4>
-                    <ul class="list-unstyled">
-                        <li>
-                            <a href="javascript:;" class="qr-button wechat"><i class="icon-dcn-f-comments"></i> 微信
-                                <div class="popover top">
-                                    <div class="arrow"></div>
-                                    <div class="popover-content">
-                                        <img src="static/wechat_qr.jpg" width="120px" height="120px">
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li><a target="_blank" href="/index"><i class="icon-dcn-f-weibo"></i> 新浪微博</a></li>
-                        <li><a href=""><i class="icon-dcn-f-twitter"></i> Twitter</a></li>
-                        <li><a href=""><i class="icon-dcn-f-facebook"></i> Facebook</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div> <!-- end of row -->
-    </div> <!-- end of container -->
-</footer> <!-- end of footer -->
+<!--<footer class="footer">-->
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--&lt;!&ndash;LEFT footer&ndash;&gt;-->
+            <!--<div class="col-md-6 col-sm-5 col-sm-12 footer-copyright">-->
+                <!--<p>© 2017-2017 KURO1</p>-->
+                <!--<div class="footer-links-inline">-->
+                    <!--<span class="dropdown">-->
+                    <!--<a href="/index" data-toggle="dropdown" role="menu"><img src="static/zh-CN.png"-->
+                                                                             <!--class="country-flag"> 简体中文</a>-->
+                    <!--<ul class="dropdown-menu lang-switch-menu">-->
+                        <!--<li class="active"><a data-lang-switch="zh-CN" href="/index"><img src="static/zh-CN.png"-->
+                                                                                          <!--class="country-flag"> 简体中文</a></li>-->
+                        <!--<li><a data-lang-switch="en" href="/index"><img src="static/en.png" class="country-flag"> English</a></li>-->
+                    <!--</ul>-->
+                    <!--</span>-->
+                    <!--<a data-pjax-main="" href="/index">服务协议</a>-->
+                    <!--<a data-pjax-main="" href="/index">隐私权政策</a>-->
+                <!--</div>-->
+                <!--<div class="price-stats">-->
+                    <!--<span class="text-success"><i class="icon-dcn-f-bitcoin"></i> 28968</span> CNY = 1 BTC-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;RIGHT footer&ndash;&gt;-->
+            <!--<div class="col-sm-2 col-xs-4">-->
+                <!--<div class="footer-links">-->
+                    <!--<h4 class="title">关于我们</h4>-->
+                    <!--<ul class="list-unstyled">-->
+                        <!--<li><a data-pjax-main="" href="/index">公司简介</a></li>-->
+                        <!--<li><a data-pjax-main="" href="/index">联系我们</a></li>-->
+                        <!--<li><a data-pjax-main="" href="/index">加入我们</a></li>-->
+                        <!--<li><a data-pjax-main="" href="/index">媒体报道</a></li>-->
+                        <!--<li><a href="/index" target="_blank">技术博客</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-2 col-xs-4">-->
+                <!--<div class="footer-links">-->
+                    <!--<h4 class="title">用户支持</h4>-->
+                    <!--<ul class="list-unstyled">-->
+                        <!--<li><a data-pjax-main="" href="/index">帮助</a></li>-->
+                        <!--<li><a data-pjax-main="" href="/index">安全系统</a></li>-->
+                        <!--<li><a href="/index" target="_blank">开发者文档</a></li>-->
+                        <!--<li><a href="/index">概念证明</a></li>-->
+                        <!--<li><a href="/index">节点状态</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="col-sm-2 col-xs-4">-->
+                <!--<div class="footer-links footer-links-social">-->
+                    <!--<h4 class="title">关注我们</h4>-->
+                    <!--<ul class="list-unstyled">-->
+                        <!--<li>-->
+                            <!--<a href="javascript:;" class="qr-button wechat"><i class="icon-dcn-f-comments"></i> 微信-->
+                                <!--<div class="popover top">-->
+                                    <!--<div class="arrow"></div>-->
+                                    <!--<div class="popover-content">-->
+                                        <!--<img src="static/wechat_qr.jpg" width="120px" height="120px">-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                        <!--</li>-->
+                        <!--<li><a target="_blank" href="/index"><i class="icon-dcn-f-weibo"></i> 新浪微博</a></li>-->
+                        <!--<li><a href=""><i class="icon-dcn-f-twitter"></i> Twitter</a></li>-->
+                        <!--<li><a href=""><i class="icon-dcn-f-facebook"></i> Facebook</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div> &lt;!&ndash; end of row &ndash;&gt;-->
+    <!--</div> &lt;!&ndash; end of container &ndash;&gt;-->
+<!--</footer> &lt;!&ndash; end of footer &ndash;&gt;-->
+
 <script type="text/javascript" src="static/application.min.js"></script>
 </body>
 </html>

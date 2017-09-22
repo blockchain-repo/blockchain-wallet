@@ -35,11 +35,11 @@
                 </tr>
                 {% for tx in txs %}
                 <tr>
-                    <td>{{ tx.timestamp }}</td>
-                    <td>{{ tx.id }}</td>
-                    <td>{{ tx.operation }}</td>
-                    <td>{{ tx.amount }}</td>
-                    <td>{{ tx.target }}</td>
+                    <td nowrap>{{ tx.timestamp }}</td>
+                    <td nowrap>{{ tx.id }}</td>
+                    <td nowrap>{{ tx.operation }}</td>
+                    <td nowrap>{{ tx.amount }}</td>
+                    <td nowrap>{{ tx.target }}</td>
 
                 </tr>
                 {% endfor %}
